@@ -52,11 +52,11 @@
                         <div class="col-lg-12 col-12">
                             <div class="card card-profile mt-4">
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-12 ">
-                                        <a href="javascript:;">
+                                    <div class="col-lg-3 col-md-6 col-sm-12  d-flex flex-column justify-content-center">
+                                        <a>
                                             <div class="p-3 py-auto pe-md-0">
-                                                <img class=" border-radius-md shadow-lg" src="/assets/img/senja-belik.jpg"
-                                                    style="width: 240px" alt="image">
+                                                <img class="border-radius-md shadow-lg" src="/assets/img/senja-belik.jpg"
+                                                    alt="image" style="width: 100%;">
                                             </div>
                                         </a>
                                     </div>
