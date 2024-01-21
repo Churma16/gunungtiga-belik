@@ -14,7 +14,7 @@
 
 @section('content')
     <header>
-        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.jpg')" loading="lazy">
+        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.png')" loading="lazy">
             <span class="mask bg-gradient-dark opacity-8"></span>
         </div>
     </header>
@@ -42,11 +42,15 @@
                     <h4>Fungsi LPMD</h4>
                     <ul>
                         <li>Penampungan dan penyaluran aspirasi masyarakat dalam pembangunan;</li>
-                        <li>Penanaman dan pemupukan rasa persatuan dan kesatuan masyarakat dalam kerangka memperkokoh Negara Kesatuan Republik Indonesia;</li>
+                        <li>Penanaman dan pemupukan rasa persatuan dan kesatuan masyarakat dalam kerangka memperkokoh Negara
+                            Kesatuan Republik Indonesia;</li>
                         <li>Peningkatan kualitas dan percepatan pelayanan pemerintah kepada masyarakat;</li>
-                        <li>Penyusunan rencana, pelaksanaan, pelestarian dan pengembangan hasil-hasil pembangunan secara partisipatif;</li>
-                        <li>Penumbuhkembangan dan penggerak prakarsa, partisipasi, serta swadaya gotong royong masyarakat; dan</li>
-                        <li>Penggali, pendayagunaan dan pengembangan potensi sumber daya alam serta keserasian lingkungan hidup.</li>
+                        <li>Penyusunan rencana, pelaksanaan, pelestarian dan pengembangan hasil-hasil pembangunan secara
+                            partisipatif;</li>
+                        <li>Penumbuhkembangan dan penggerak prakarsa, partisipasi, serta swadaya gotong royong masyarakat;
+                            dan</li>
+                        <li>Penggali, pendayagunaan dan pengembangan potensi sumber daya alam serta keserasian lingkungan
+                            hidup.</li>
                     </ul>
                     <div class="card col-lg-6 col-md-8 col-sm-10 m-auto mb-3">
                         <div class="card-header">Daftar Nama Anggota Badan Permusyawaratan Desa Gunungtiga Tahun 2019</div>

@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/detail-post/{post:slug}', [HomeController::class, 'detailPost']);
 
 
 Route::get('/test', function () {
@@ -63,6 +66,19 @@ Route::get('/peta-desa', function () {
     return view('user.peta-desa');
 });
 
+Route::get('/berita-desa', function () {
+    return view('user.berita-desa');
+});
 
-//Admin
-// Route::
+
+
+
+// AUTH
+Route::get('/login', [AuthController::class, 'loginPage']);
+Route::post('/login', [AuthController::class, 'login']);
+
+
+// ADMIN
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::resource('/posts', PostController::class);

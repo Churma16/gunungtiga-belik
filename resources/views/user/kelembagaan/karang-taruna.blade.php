@@ -14,7 +14,7 @@
 
 @section('content')
     <header>
-        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.jpg')" loading="lazy">
+        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.png')" loading="lazy">
             <span class="mask bg-gradient-dark opacity-8"></span>
         </div>
     </header>

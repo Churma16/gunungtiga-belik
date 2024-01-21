@@ -22,4 +22,9 @@ class Post extends Model
     public function postImage(){
         return $this->hasOne(PostImage::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

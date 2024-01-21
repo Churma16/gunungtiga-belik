@@ -5,7 +5,8 @@
         ol li {
             padding-top: 10px;
         }
-        p{
+
+        p {
             text-align: justify
         }
     </style>
@@ -13,7 +14,7 @@
 
 @section('content')
     <header>
-        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.jpg')" loading="lazy">
+        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.png')" loading="lazy">
             <span class="mask bg-gradient-dark opacity-8"></span>
         </div>
     </header>
@@ -59,45 +60,56 @@
                         dalam misi agar dapat di operasionalkan/ dikerjakan. Sebagaimana penyusunan visi, misipun dalam
                         penyusunannya menggunakan pendekatan partisipatif dan pertimbangan potensi dan kebutuhan Desa
                         Gunungtiga, sebagaimana proses yang dilakukan, maka misi Desa Gunungtiga adalah:
-                        <ol>
-                            <li>Religius
-                                <ul>
-                                    <li>Terwujudnya masyarakat yang beriman dan bertaqwa sehingga nilai dan norma agama dilaksanakan dalam perilaku sehari – hari.</li>
-                                    <li>Menjunjung tinggi budaya dan karakter masyarakat yang agamis, bermoral dan berbudi luhur.</li>
-                                    <li>Berkembangnya transparansi dalam budaya dan perilaku.</li>
-                                    <li>Berkembangnya budaya jujur, sportif, dan menghargai perbedaan.</li>
-                                </ul>
-                            </li>
-                            <li>Aman & Damai
-                                <ul>
-                                    <li>Meningkatkan dan menjamin kepastian pelayanan publik dengan model pelayanan yang efektif dan efisien</li>
-                                    <li>Mewujudkan penyelenggaraan pemerintah yang transparan, akuntabel, professional berlandaskan norma – norma dan supremasi hukum</li>
-                                    <li>Meningkatkan pemberdayaan dan penguatan kelembagaan di masyarakat melalui keterlibatan seluruh komponen dalam setiap tahapan pembangunan</li>
-                                    <li>Meningkatkan dan memelihara stabilitas pemerintahan, politik, ekonomi, sosial, dan budaya sehingga memberikan keamanan dan rasa aman bagi masyarakat</li>
-                                </ul>
-                            </li>
-                            <li>Sehat & Sejahtera
-                                <ul>
-                                    <li>Meningkatnya kesehatan masyarakat sehingga dapat meningkatkat produktifitasnya</li>
-                                    <li>Dalam bidang kesehatan, desa Gunungtiga di Tahun 2014 berhasil menduduki peringkat lomba PHBS Tingkat Provinsi Jawa Tengah.</li>
-                                    <li>Meningkatnya pendapatan perkapita penduduk sehingga desa Gunungtiga menjadi sejahtera</li>
-                                    <li>Meningkatnya indeks pengembangan manusia, yang merupakan komposisi tingkat pendidikan, kesehatan, angka kematian bayi, dan usia harapan hidup.</li>
-                                    <li>Mewujudkan kepastian pelayanan dasar masyarakat secara optimal yang meliputi pendidikan, kesehatan, dan Infra struktur pedesaan</li>
-                                    <li>Meningkatkan pertumbuhan ekonomi dalam rangka pengentasan kemiskinan, membuka lapangan kerja dalam rangka mewujudkan kesejahteraan masyarakat.</li>
-                                </ul>
-                            </li>
-                            <li>Menjunjung Tinggi Supremasi Hukum
+                    <ol>
+                        <li>Religius
                             <ul>
-                                    <li>Tegaknya hukum yang berkeadilan tanpa diskriminasi</li>
-                                    <li>Terwujudnya institusi dan aparat desa yang bersih dan professional</li>
-                                    <li>Terwujudnya hak asasi manusia</li>
-                                    <li>Terwujudnya budaya penghargaan dan kepatuhan terhadap hukum</li>
-                                </ul>
-                            </li>
-                            <li>Terselenggaranya Pemerintahan Desa yang bersih, Transparan dan Mengutamakan
-                                PelayananMengutamakan dan menjamin kepastian pelayanan publik dengan model pelayanan yang
-                                efektif dan efisien.</li>
-                        </ol>
+                                <li>Terwujudnya masyarakat yang beriman dan bertaqwa sehingga nilai dan norma agama
+                                    dilaksanakan dalam perilaku sehari – hari.</li>
+                                <li>Menjunjung tinggi budaya dan karakter masyarakat yang agamis, bermoral dan berbudi
+                                    luhur.</li>
+                                <li>Berkembangnya transparansi dalam budaya dan perilaku.</li>
+                                <li>Berkembangnya budaya jujur, sportif, dan menghargai perbedaan.</li>
+                            </ul>
+                        </li>
+                        <li>Aman & Damai
+                            <ul>
+                                <li>Meningkatkan dan menjamin kepastian pelayanan publik dengan model pelayanan yang efektif
+                                    dan efisien</li>
+                                <li>Mewujudkan penyelenggaraan pemerintah yang transparan, akuntabel, professional
+                                    berlandaskan norma – norma dan supremasi hukum</li>
+                                <li>Meningkatkan pemberdayaan dan penguatan kelembagaan di masyarakat melalui keterlibatan
+                                    seluruh komponen dalam setiap tahapan pembangunan</li>
+                                <li>Meningkatkan dan memelihara stabilitas pemerintahan, politik, ekonomi, sosial, dan
+                                    budaya sehingga memberikan keamanan dan rasa aman bagi masyarakat</li>
+                            </ul>
+                        </li>
+                        <li>Sehat & Sejahtera
+                            <ul>
+                                <li>Meningkatnya kesehatan masyarakat sehingga dapat meningkatkat produktifitasnya</li>
+                                <li>Dalam bidang kesehatan, desa Gunungtiga di Tahun 2014 berhasil menduduki peringkat lomba
+                                    PHBS Tingkat Provinsi Jawa Tengah.</li>
+                                <li>Meningkatnya pendapatan perkapita penduduk sehingga desa Gunungtiga menjadi sejahtera
+                                </li>
+                                <li>Meningkatnya indeks pengembangan manusia, yang merupakan komposisi tingkat pendidikan,
+                                    kesehatan, angka kematian bayi, dan usia harapan hidup.</li>
+                                <li>Mewujudkan kepastian pelayanan dasar masyarakat secara optimal yang meliputi pendidikan,
+                                    kesehatan, dan Infra struktur pedesaan</li>
+                                <li>Meningkatkan pertumbuhan ekonomi dalam rangka pengentasan kemiskinan, membuka lapangan
+                                    kerja dalam rangka mewujudkan kesejahteraan masyarakat.</li>
+                            </ul>
+                        </li>
+                        <li>Menjunjung Tinggi Supremasi Hukum
+                            <ul>
+                                <li>Tegaknya hukum yang berkeadilan tanpa diskriminasi</li>
+                                <li>Terwujudnya institusi dan aparat desa yang bersih dan professional</li>
+                                <li>Terwujudnya hak asasi manusia</li>
+                                <li>Terwujudnya budaya penghargaan dan kepatuhan terhadap hukum</li>
+                            </ul>
+                        </li>
+                        <li>Terselenggaranya Pemerintahan Desa yang bersih, Transparan dan Mengutamakan
+                            PelayananMengutamakan dan menjamin kepastian pelayanan publik dengan model pelayanan yang
+                            efektif dan efisien.</li>
+                    </ol>
                     </p>
                 </div>
             </div>

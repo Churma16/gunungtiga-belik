@@ -14,7 +14,7 @@
 
 @section('content')
     <header>
-        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.jpg')" loading="lazy">
+        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.png')" loading="lazy">
             <span class="mask bg-gradient-dark opacity-8"></span>
         </div>
     </header>
@@ -35,8 +35,7 @@
                     <div class="card mt-4 pb-2 col-md-11">
                         <!-- Card image -->
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                            <img class="border-radius-lg w-100"
-                                src="/assets/img/peta-gunungtiga.jpg"
+                            <img class="border-radius-lg w-100" src="/assets/img/peta-gunungtiga.jpg"
                                 alt="Image placeholder">
                             <!-- List group -->
                         </div>

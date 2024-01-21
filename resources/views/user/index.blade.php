@@ -1,9 +1,10 @@
+{{-- @dd($posts[0]->konten) --}}
 @extends('user.layouts.main')
 
 @section('content')
     <!-- -------- START HEADER 7 w/ text and video ------- -->
     <header class="bg-gradient-dark">
-        <div class="page-header min-vh-75" style="background-image: url('/assets/img/senja-belik.jpg');">
+        <div class="page-header min-vh-75" style="background-image: url('/assets/img/senja-belik.png');">
             <span class="mask bg-gradient-dark opacity-6"></span>
             <div class="container">
                 <div class="row justify-content-center">
@@ -19,8 +20,8 @@
     <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6 mb-4">
         <section class="my-5">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6 m-auto">
+                <div class="row justify-content-between">
+                    <div class="col-md-6 col-sm-8 ">
                         <div class="row">
                             <div class="col-8">
                                 <div class="input-group input-group-outline">
@@ -28,10 +29,20 @@
                                     <input type="text" class="form-control mb-sm-0">
                                 </div>
                             </div>
-                            <div class="col-4 ps-0">
+                            <div class="col-4 ps-0 align-self-end">
                                 <button type="button"
                                     class="btn bg-gradient-info mb-0 h-100 position-relative z-index-2">Cari</button>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-4">
+                        <div class="input-group input-group-outline">
+                            <select class="form-control">
+                                <option>Pilih Tahun</option>
+                                <option>2022</option>
+                                <option>2011</option>
+                                <option>2023</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -47,37 +58,39 @@
                             akhir ini.</p>
                     </div>
                 </div>
-                @for ($i = 0; $i < 3; $i++)
+                @foreach ($posts as $post)
                     <div class="row mt-5">
                         <div class="col-lg-12 col-12">
                             <div class="card card-profile mt-4">
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6 col-sm-12  d-flex flex-column justify-content-center">
-                                        <a>
+                                        <a href="/detail-post/">
                                             <div class="p-3 py-auto pe-md-0">
-                                                <img class="border-radius-md shadow-lg" src="/assets/img/senja-belik.jpg"
-                                                    alt="image" style="width: 100%;">
+                                                <img class="border-radius-md shadow-lg"
+                                                    src="{{ asset('storage/' . $post->gambar) }}" alt="image"
+                                                    style="width: 100%;">
                                             </div>
                                         </a>
                                     </div>
                                     <div class="col-lg-9 col-md-6 col-12 my-auto">
                                         <div class="card-body ps-lg-0">
-                                            <h5 class="mb-0">Emma Roberts</h5>
-                                            <h6 class="text-info">UI Designer</h6>
-                                            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipiscing elit, dis ad
-                                                sed arcu interdum elementum hendrerit vulputate, nulla tristique est massa
-                                                pretium id. Tortor parturient consequat velit mauris fames ultricies
-                                                eleifend, vulputate cum aliquam nunc risus non sollicitudin gravida,
-                                                accumsan est porttitor euismod urna magna. Ut nascetur faucibus dis non
-                                                pretium iaculis conubia vivamus est venenatis tempor cum, tortor torquent
-                                                cras nullam vestibulum hac id duis dapibus nam tempus.</p>
+                                            <a href="/detail-post/{{ $post->slug }}">
+                                                <h5 class="mb-0">{{ $post->judul }}</h5>
+                                            </a>
+                                            <div class="d-flex" style="gap:8px">
+                                                <small><i class="fas fa-clock"></i> {{ $post->post_date }}</small>
+                                                <small><i class="fas fa-user"></i> {{ $post->user->name }}</small>
+                                                <small><i class="fas fa-folder-open"></i>
+                                                    {{ $post->category->nama }}</small>
+                                            </div>
+                                            <p class="mb-0 mt-2">{!! $post->excerpt!!}... <a class="text-bold" href="/detail-post/{{ $post->slug }}">Baca lebih lanjut...</a></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
                 <div class="row mt-4">
                     <div class="col-lg-6 col-12">
                         <div class="card card-profile mt-4 z-index-2">
@@ -136,7 +149,7 @@
                                 <div class="col-lg-3 col-md-6 col-12 mt-n5">
                                     <a href="javascript:;">
                                         <div class="p-3 pe-md-0">
-                                            <img class=" border-radius-md shadow-lg" src="/assets/img/senja-belik.jpg"
+                                            <img class=" border-radius-md shadow-lg" src="/assets/img/senja-belik.png"
                                                 style="width: 240px" alt="image">
                                         </div>
                                     </a>

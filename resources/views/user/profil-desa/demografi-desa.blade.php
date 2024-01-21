@@ -14,7 +14,7 @@
 
 @section('content')
     <header>
-        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.jpg')" loading="lazy">
+        <div class="page-header min-height-400" style="background-image: url('/assets/img/senja-belik.png')" loading="lazy">
             <span class="mask bg-gradient-dark opacity-8"></span>
         </div>
     </header>
@@ -72,78 +72,81 @@
 
                         Penduduk Desa Gunungtiga dapat dikelompokkan menjadi 4 kelompok usia yaitu :
                     </p>
-                    <div class="card col-md-6 col-sm-10 m-auto mb-3">
-                        <div class="card-header">Jumlah Penduduk Berdasarkan Kelompok Usia.</div>
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Kelompok Usia</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Jumlah Jiwa</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <div class="my-auto">
-                                                    <h6 class="mb-0 text-xs">0-5 Tahun</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">289</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <div class="my-auto">
-                                                    <h6 class="mb-0 text-xs">6-20 Tahun</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">1.552</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <div class="my-auto">
-                                                    <h6 class="mb-0 text-xs">21-60 Tahun</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">1.406</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <div class="my-auto">
-                                                    <h6 class="mb-0 text-xs">60+ Tahun</h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">389</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer text-muted text-xxs">
-                            Sumber : Data Monografi Desa Gunungtiga Tahun 2016
-                        </div>
-                    </div>
                     <h4>Komposisi Penduduk Desa</h4>
                     <ol>
                         <li>Komposisi Penduduk Berdasarkan Kelompok Usia
+                            <div class="card col-md-6 col-sm-10 m-auto mb-3">
+                                <div class="card-header">Jumlah Penduduk Berdasarkan Kelompok Usia.</div>
+                                <div class="table-responsive">
+                                    <table class="table align-items-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                    Kelompok Usia</th>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Jumlah Jiwa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs">0-5 Tahun</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">289</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs">6-20 Tahun</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">1.552</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs">21-60 Tahun</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">1.406</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs">60+ Tahun</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">389</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer text-muted text-xxs">
+                                    Sumber : Data Monografi Desa Gunungtiga Tahun 2016
+                                </div>
+                            </div>
+                        </li>
+                        <li>Komposisi Penduduk Berdasarkan Jenis Pekerjaan
                             <div class="card col-md-6 col-sm-10 m-auto mb-3">
                                 <div class="card-header">Jumlah Penduduk Berdasarkan Jenis Pekerjaan</div>
                                 <div class="table-responsive">
@@ -396,10 +399,302 @@
                                     Sumber : Data Monografi Desa Gunungtiga Tahun 2016
                                 </div>
                             </div>
+
                         </li>
-                        <li>Komposisi Penduduk Berdasarkan Jenis Pekerjaan</li>
                         <li>Komposisi Penduduk Berdasarkan Pendidikan</li>
-                        <li>Komposisi Penduduk Berdasarkan Lapangan Usaha</li>
+                        <div class="card col-md-6 col-sm-10 m-auto mb-3">
+                            <div class="card-header">Jumlah Penduduk Berdasarkan Jenis Pekerjaan</div>
+                            <div class="table-responsive">
+                                <table class="table align-items-center mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th
+                                                class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">
+                                                Tingkat Pendidikan</th>
+                                            <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Jumlah Jiwa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">Belum Sekolah</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">678</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">Tidak Tamat SD</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">466</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">Tamat SD/Sederajat</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">1.362</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">Tamat SLTP/ Sederajat</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">758</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">Tamat SLTA/ Sederajat</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">250</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">Tamat Akademi/Sederajat</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">29</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">Tamat PT/Sederajat</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">34</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">Buta Huruf </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">–</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <div class="my-auto">
+                                                        <h6 class="mb-0 text-xs">Jumlah</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">3.543</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="card-footer text-muted text-xxs">
+                                Sumber : Data Monografi Desa Gunungtiga Tahun 2016
+                            </div>
+                        </div>
+                        <li>Komposisi Penduduk Berdasarkan Lapangan Usaha
+                            <div class="card col-lg-6 col-md-10 col-sm-10 m-auto mb-3">
+                                <div class="card-header">Jumlah Penduduk Berdasarkan Lapangan Usaha</div>
+                                <div class="table-responsive">
+                                    <table class="table align-items-center mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    class="text-uppercase text-secondary  text-xxs font-weight-bolder opacity-7">
+                                                    Lapangan Usaha</th>
+                                                <th
+                                                    class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                    Jumlah Jiwa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Pertanian, kehutanan, perkebunan dan
+                                                                perikanan</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">-</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Pertambangan dan Penggalian</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">-</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Industri Pengolahan</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">4</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Listrik dan Air Minum</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">2</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Bangunan/Konstruksi</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">138</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Perdagangan Besar, Eceran, Rumah
+                                                                makan & Hotel</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">98</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Angkutan, Pergudangan dan Komunikasi
+                                                            </h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">62</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Keuangan, Asuransi, Usaha Persewaan
+                                                                Bangunan dan Jasa Perusahaan</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">–</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Jasa Sosial Kemasyarakatan dan
+                                                                Perorang-an</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">–</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs ">Lainnya (Kegiatan yang belum jelas
+                                                                batas-annya)</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0"> 161</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2 ">
+                                                        <div class="my-auto">
+                                                            <h6 class="mb-0 text-xs text-bold">Jumlah</h6>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">465</p>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="card-footer text-muted text-xxs">
+                                    Sumber : Data Monografi Desa Gunungtiga Tahun 2016
+                                </div>
+                            </div>
+                        </li>
                     </ol>
 
                     <h4>KONDISI EKONOMI</h4>

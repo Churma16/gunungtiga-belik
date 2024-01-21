@@ -637,8 +637,8 @@
                                 <div class="col-lg-3 col-md-6 col-12 mt-n5">
                                     <a href="javascript:;">
                                         <div class="p-3 pe-md-0">
-                                            <img class=" border-radius-md shadow-lg"
-                                                src="/assets/img/senja-belik.jpg" style="width: 240px" alt="image">
+                                            <img class=" border-radius-md shadow-lg" src="/assets/img/senja-belik.png"
+                                                style="width: 240px" alt="image">
                                         </div>
                                     </a>
                                 </div>
@@ -711,8 +711,7 @@
                             alt="logo">
                     </div>
                     <div class="col-lg-2 col-md-4 col-6 mb-4">
-                        <img class="w-100 opacity-7" src="/assets/img/logos/gray-logos/logo-nasa.svg"
-                            alt="logo">
+                        <img class="w-100 opacity-7" src="/assets/img/logos/gray-logos/logo-nasa.svg" alt="logo">
                     </div>
                     <div class="col-lg-2 col-md-4 col-6 mb-4">
                         <img class="w-100 opacity-7" src="/assets/img/logos/gray-logos/logo-netflix.svg"
@@ -775,8 +774,8 @@
                     </div>
                     <div class="col-md-5 ms-auto">
                         <div class="position-relative">
-                            <img class="max-width-50 w-100 position-relative z-index-2"
-                                src="/assets/img/macbook.png" alt="image">
+                            <img class="max-width-50 w-100 position-relative z-index-2" src="/assets/img/macbook.png"
+                                alt="image">
                         </div>
                     </div>
                 </div>
