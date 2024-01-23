@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
@@ -18,6 +19,9 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/category/{category:nama}', [HomeController::class, 'showByCategory']);
+Route::get('/author/{user:name}', [HomeController::class, 'showByAuthor']);
+Route::get('/year/{year}', [HomeController::class, 'showByYear']);
 Route::get('/detail-post/{post:slug}', [HomeController::class, 'detailPost']);
 
 
@@ -81,4 +85,6 @@ Route::post('/login', [AuthController::class, 'login']);
 // ADMIN
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::resource('/posts', PostController::class);
+Route::resource('/dashboard/posts', PostController::class);
+
+Route::resource('/dashboard/categories', CategoryController::class);

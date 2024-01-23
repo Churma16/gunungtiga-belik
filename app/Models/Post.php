@@ -27,4 +27,16 @@ class Post extends Model
     {
         return 'slug';
     }
+
+
+    public function getPostFormatDateAttribute()
+    {
+        return $this->created_at->format('d F Y');
+    }
+
+    public function getPostExcerptAttribute()
+    {
+        $excerpt = implode(' ', array_slice(str_word_count($this->konten, 1), 0, 100));
+        return $excerpt;
+    }
 }

@@ -15,22 +15,30 @@
                     </div>
                     <div class="d-flex align-self-start mx-3 pt-3" style="gap: 6px ">
                         <a class="btn btn-warning"><i class="fas fa-edit"></i> Edit Postingan</a>
-                        <a class="btn btn-danger"><i class="fas fa-trash"></i> Hapus Postingan</a>
+                        <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+                            @method('delete')
+                            @csrf
+                            <button class="btn btn-danger border-0 " onclick="confirmDelete(event)">
+                                <i class="fas fa-trash"></i> Hapus Postingan</button>
+                        </form>
                     </div>
                     <div class="card mt-4 px-5 pt-3">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2  align-self-center">
                             <div class="col-lg-10 col-md-12 ">
-                                <img class="border-radius-lg w-100"
-                                    src="{{ asset('storage/' . $post->gambar) }}"
+                                <img class="border-radius-lg w-100" src="{{ asset('storage/' . $post->gambar) }}"
                                     alt="Image placeholder" style="max-width: 100%">
                             </div>
                         </div>
                         <!-- Card body -->
                         <div class="card-body">
                             <h4 class="font-weight-normal mt-3">{{ $post->judul }}</h4>
-                            <small><b>Oleh:</b> {{ $post->user->name }}, {{ $post->created_at }}</small>
-                            <br>
-                            <small><b>Kategori:</b> {{ $post->category->nama }}</small>
+                            <div class="d-flex border-top border-bottom py-1" style="gap: 8px">
+                                <small><i class="fas fa-clock"></i>
+                                    {{ $post->post_date }}</small>
+                                <small><i class="fas fa-user"></i> {{ $post->user->name }}</small>
+                                <small><i class="fas fa-folder-open"></i>
+                                    {{ $post->category->nama }}</small>
+                            </div>
                             <p class="card-text mb-4">{!! $post->konten !!}</p>
                         </div>
                     </div>

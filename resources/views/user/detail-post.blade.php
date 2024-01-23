@@ -29,7 +29,7 @@
             <section class=" col-md-8">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-8 mb-5 mt-5">
+                        <div class="col-lg-10 mb-5 mt-5">
                             <h3 class="">{{ $post->judul }}</h3>
                             {{-- <div class="d-flex border-top border-bottom py-1" style="gap: 8px">
                                 <small><i class="fas fa-clock"></i>
@@ -48,8 +48,8 @@
                                     <div class="col-md-10 mx-auto">
                                         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                             <ol class="carousel-indicators">
-                                                <li data-target="#carouselExampleIndicators"
-                                                    data-bs-slide-to="0" class="active"></li>
+                                                <li data-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                                    class="active"></li>
                                                 @foreach ($post_images as $post_image)
                                                     <li data-target="#carouselExampleIndicators"
                                                         data-bs-slide-to="{{ $loop->iteration }}"></li>
@@ -57,16 +57,15 @@
                                             </ol>
                                             <div class="carousel-inner border-radius-lg">
                                                 <div class="carousel-item active">
-                                                    <img class="d-block w-100"
-                                                        src="{{ asset('storage/' . $post->gambar) }}"
+                                                    <img class="d-block w-100" src="{{ asset('storage/' . $post->gambar) }}"
                                                         alt="dokumentasi {{ $post->judul }}">
                                                 </div>
                                                 @foreach ($post_images as $post_image)
-                                                <div class="carousel-item">
-                                                    <img class="d-block w-100"
-                                                        src="{{ asset('storage/' . $post_image->gambar) }}"
-                                                        alt="First slide">
-                                                </div>
+                                                    <div class="carousel-item">
+                                                        <img class="d-block w-100"
+                                                            src="{{ asset('storage/' . $post_image->gambar) }}"
+                                                            alt="First slide">
+                                                    </div>
                                                 @endforeach
                                             </div>
                                             <a class="carousel-control-prev" href="#carouselExampleIndicators"
@@ -90,9 +89,11 @@
                                 <div class="d-flex border-top border-bottom py-1" style="gap: 8px">
                                     <small><i class="fas fa-clock"></i>
                                         {{ $post->post_date }}</small>
-                                    <small><i class="fas fa-user"></i> {{ $post->user->name }}</small>
+                                    <small><i class="fas fa-user"></i> <a
+                                            href="/author/{{ $post->user->name }}">{{ $post->user->name }}</a></small>
                                     <small><i class="fas fa-folder-open"></i>
-                                        {{ $post->category->nama }}</small>
+                                        <a
+                                            href="/category/{{ $post->category->nama }}">{{ $post->category->nama }}</a></small>
                                 </div>
                                 <p class="card-text mb-4">{!! $post->konten !!}</p>
                             </div>

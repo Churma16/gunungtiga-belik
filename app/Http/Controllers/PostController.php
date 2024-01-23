@@ -25,7 +25,6 @@ class PostController extends Controller
             $post->post_date = $post->created_at->format('d F Y');
         }
 
-
         return view('admin.posts.index', [
             'posts' => $posts
         ]);
@@ -46,20 +45,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(
-        //     $request->all()
-        // );
-        $validatedData =  $request->validate([
+        $validatedData = $request->validate([
             'judul' => 'required',
             'konten' => 'required',
-            'gambar' => 'required',
+            'gambar' => 'required|image',
             'category_id' => 'required'
         ]);
+
+        $validatedData['judul'] = strtoupper($validatedData['judul']);
 
         if ($request->file('gambar')) {
             $validatedData['gambar'] = $request->file('gambar')->store('gambar-header');
         }
-
 
         $validatedData['user_id'] = Auth()->user()->id;
 
@@ -68,24 +65,24 @@ class PostController extends Controller
 
         $count = Post::latest()->count();
 
-        $validatedData['slug'] = $baseSlug . '-' . $count + 1;
+        $validatedData['slug'] = $baseSlug . '-' . ($count + 1);
 
-        Post::create($validatedData);
+        $post = Post::create($validatedData);
 
-        $postData = Post::where('slug', $validatedData['slug'])->first();
-        // dd($postData);
         if ($request->hasFile('post_gambar')) {
             foreach ($request->file('post_gambar') as $gambar_satuan) {
-                $gambarPath = $gambar_satuan->store('gambar-post');
+                if ($gambar_satuan->isValid() && $gambar_satuan->isFile() && $gambar_satuan->isImage()) {
+                    $gambarPath = $gambar_satuan->store('gambar-post');
 
-                PostImage::create([
-                    'gambar' => $gambarPath,
-                    'post_id' => $postData->id,
-                ]);
+                    PostImage::create([
+                        'gambar' => $gambarPath,
+                        'post_id' => $post->id,
+                    ]);
+                }
             }
         }
 
-        return redirect('/posts');
+        return redirect('/dashboard/posts');
     }
 
     /**
@@ -93,6 +90,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post->post_date = $post->created_at->format('d F Y');
+
 
         return view('admin.posts.show', [
             'post' => $post,
@@ -120,6 +119,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::destroy($post->id);
+        session()->flash('success', 'Postingan ' . $post->judul . ' Berhasil Dihapus');
+        return redirect('/dashboard/posts');
     }
 }

@@ -88,55 +88,14 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2 col-sm-6 col-6 mb-4">
+            <div class="col-md-4 col-sm-6 col-6 mb-4 me-auto">
                 <div>
-                    <h6 class="text-sm">Help & Support</h6>
+                    <h6 class="text-sm">Lokasi</h6>
                     <ul class="flex-column ms-n3 nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.creative-tim.com/contact-us" target="_blank">
-                                Contact Us
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.creative-tim.com/knowledge-center" target="_blank">
-                                Knowledge Center
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://services.creative-tim.com/?ref=ct-mk2-footer"
-                                target="_blank">
-                                Custom Development
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.creative-tim.com/sponsorships" target="_blank">
-                                Sponsorships
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-2 col-sm-6 col-6 mb-4 me-auto">
-                <div>
-                    <h6 class="text-sm">Legal</h6>
-                    <ul class="flex-column ms-n3 nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.creative-tim.com/knowledge-center/terms-of-service"
-                                target="_blank">
-                                Terms & Conditions
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.creative-tim.com/knowledge-center/privacy-policy"
-                                target="_blank">
-                                Privacy Policy
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://www.creative-tim.com/license" target="_blank">
-                                Licenses (EULA)
-                            </a>
-                        </li>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15833.602274800729!2d109.34063031006725!3d-7.195053384963441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6ff0231871a4b3%3A0x5027a76e3564d80!2sGunungtiga%2C%20Belik%2C%20Pemalang%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1705932693936!5m2!1sen!2sid"
+                            style="width :100%;rounded:10px" class="px-2" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </ul>
                 </div>
             </div>

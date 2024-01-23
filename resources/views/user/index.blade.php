@@ -1,4 +1,3 @@
-{{-- @dd($posts[0]->konten) --}}
 @extends('user.layouts.main')
 
 @section('content')
@@ -21,9 +20,9 @@
         <section class="my-5">
             <div class="container">
                 <div class="row justify-content-between">
-                    <div class="col-md-6 col-sm-8 ">
+                    <div class="col-md-6 col-sm-12 ">
                         <div class="row">
-                            <div class="col-8">
+                            <div class="col-8 col-sm-8">
                                 <div class="input-group input-group-outline">
                                     <label class="form-label">Masukan Judul Berita...</label>
                                     <input type="text" class="form-control mb-sm-0">
@@ -35,13 +34,21 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-sm-4">
+                    <div class="col-md-4 col-sm-12 d-flex mt-sm-2" style="gap:12px">
                         <div class="input-group input-group-outline">
-                            <select class="form-control">
+                            <select class="form-control" id="categoryDropdown">
+                                <option>Pilih Kategori</option>
+                                @foreach ($distinctCategories as $distinctCategory)
+                                    <option value="{{ $distinctCategory }}">{{ $distinctCategory }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="input-group input-group-outline">
+                            <select class="form-control" id="yearDropdown">
                                 <option>Pilih Tahun</option>
-                                <option>2022</option>
-                                <option>2011</option>
-                                <option>2023</option>
+                                @foreach ($distinctYears as $distinctYear)
+                                    <option value="{{ $distinctYear }}">{{ $distinctYear }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -53,7 +60,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 text-start mb-2 mt-5">
-                        <h3 class="text-white z-index-1 position-relative">Berita Terkini</h3>
+                        <h3 class="text-white z-index-1 position-relative">{{ $title }}</h3>
                         <p class="text-white opacity-8 mb-0">Berikut merupakan kejadian yang terjadi di gunungtiga akhir
                             akhir ini.</p>
                     </div>
@@ -78,12 +85,15 @@
                                                 <h5 class="mb-0">{{ $post->judul }}</h5>
                                             </a>
                                             <div class="d-flex" style="gap:8px">
-                                                <small><i class="fas fa-clock"></i> {{ $post->post_date }}</small>
-                                                <small><i class="fas fa-user"></i> {{ $post->user->name }}</small>
+                                                <small><i class="fas fa-clock"></i> {{ $post->post_format_date }}</small>
+                                                <small><i class="fas fa-user"></i> <a
+                                                        href="/author/{{ $post->user->name }}">{{ $post->user->name }}</a></small>
                                                 <small><i class="fas fa-folder-open"></i>
-                                                    {{ $post->category->nama }}</small>
+                                                    <a
+                                                        href="/category/{{ $post->category->nama }}">{{ $post->category->nama }}</a></small>
                                             </div>
-                                            <p class="mb-0 mt-2">{!! $post->excerpt!!}... <a class="text-bold" href="/detail-post/{{ $post->slug }}">Baca lebih lanjut...</a></p>
+                                            <p class="mb-0 mt-2">{!! $post->post_excerpt !!}... <a class="text-bold"
+                                                    href="/detail-post/{{ $post->slug }}">Baca lebih lanjut...</a></p>
                                         </div>
                                     </div>
                                 </div>
@@ -316,14 +326,23 @@
     <!-- -------- START FOOTER 5 w/ DARK BACKGROUND ------- -->
 
     <!-- -------- END FOOTER 5 w/ DARK BACKGROUND ------- -->
-    <!--   Core JS Files   -->
-    <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-    <!-- Control Center for Material UI Kit: parallax effects, scripts for the example pages etc -->
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
-    <script src="../assets/js/material-kit.min.js?v=3.0.4" type="text/javascript"></script>
+@endsection
+
+@section('scripts')
+    <script>
+        document.getElementById('yearDropdown').addEventListener('change', function() {
+            var selectedYear = this.value;
+            if (selectedYear !== "Pilih Tahun") {
+                window.location.href = "/year/" + selectedYear;
+            }
+        });
+        document.getElementById('categoryDropdown').addEventListener('change', function() {
+            var selectedCategory = this.value;
+            if (selectedCategory !== "Pilih Kategori") {
+                window.location.href = "/category/" + selectedCategory;
+            }
+        });
+    </script>
 @endsection
 
 </html>
