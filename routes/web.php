@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\VillageGovernmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,5 +93,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::resource('/dashboard/posts', PostController::class);
 
 Route::resource('/dashboard/categories', CategoryController::class);
+
+Route::resource('/dashboard/village-governments', VillageGovernmentController::class);
+Route::post('/village-governments/custom-sortable', [VillageGovernmentController::class, 'updateOrder']);
+
 
 Route::get('/dashboard/users', [UserController::class, 'index']);
