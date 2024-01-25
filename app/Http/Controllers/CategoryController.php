@@ -58,7 +58,17 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $posts = Post::where('category_id', $category->id)->latest()->get();
+
+        foreach ($posts as $post) {
+            $post->konten = strip_tags($post->konten);
+
+            $post->post_date = $post->created_at->format('d F Y');
+        }
+
+        return view('admin.posts.index', [
+            'posts' => $posts,
+        ]);
     }
 
     /**
@@ -102,5 +112,4 @@ class CategoryController extends Controller
         session()->flash('success', 'Kategori ' . $category->nama . ' Berhasil Dihapus');
         return redirect('/dashboard/categories/');
     }
-
 }

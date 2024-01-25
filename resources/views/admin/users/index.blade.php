@@ -9,13 +9,13 @@
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                             <h6 class="text-white text-capitalize ps-3">
-                                Tabel Postingan
+                                Tabel Kelola Admin
                             </h6>
                         </div>
                     </div>
                     <div class="d-flex px-3 pt-2">
                         <a class="btn btn-primary" href="/dashboard/posts/create"><i class="fas fa-plus"></i> Buat
-                            Postingan</a>
+                            Admin</a>
                     </div>
                     <div class="card-body px-0 pb-2">
                         <div class="table-responsive p-0">
@@ -27,24 +27,16 @@
                                             No.
                                         </th>
                                         <th
-                                            class="text-uppercase text-center text-secondary text-xs font-weight-bolder opacity-10">
-                                            Gambar
+                                            class="text-uppercase text-secondary text-xs font-weight-bolder opacity-10 ps-2">
+                                            Nama
                                         </th>
                                         <th
                                             class="text-uppercase text-secondary text-xs font-weight-bolder opacity-10 ps-2">
-                                            Judul
+                                            Email
                                         </th>
                                         <th
-                                            class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-10">
-                                            Tanggal Posting
-                                        </th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-10">
-                                            Kategori
-                                        </th>
-                                        <th
-                                            class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-10">
-                                            Penulis
+                                            class=" text-uppercase text-secondary text-xs font-weight-bolder opacity-10 ps-2">
+                                            Tanggal Daftar
                                         </th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-10">
@@ -54,7 +46,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($posts) == 0)
+                                    @if (count($users) == 0)
                                         <tr>
                                             <td colspan="7">
                                                 <p class="text-xs font-weight-bold mb-0 text-center">
@@ -63,50 +55,30 @@
                                             </td>
                                         </tr>
                                     @else
-                                        @foreach ($posts as $post)
+                                        @foreach ($users as $user)
                                             <tr>
                                                 <td class="">
                                                     <span
                                                         class="text-secondary  text-xs font-weight-bold ps-4">{{ $loop->iteration }}</span>
                                                 </td>
-                                                <td class="align-middle text-center" style="max-width: 50px">
-                                                    <img src="{{ asset('storage/' . $post->gambar) }}" class="me-3 rounded"
-                                                        alt="user1" width="100%" />
+                                                <td class="align-middle">
+                                                    <span
+                                                        class="text-secondary text-xs font-weight-bold">{{ $user->name }}</span>
+                                                </td>
+                                                <td class="align-middle">
+                                                    <span class="text-secondary text-xs ">{{ $user->email }}</span>
                                                 </td>
                                                 <td class="align-middle">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $post->judul }}</span>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <span class="text-secondary text-xs ">{{ $post->post_date }}</span>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <span class="text-secondary text-xs ">{{ $post->category->nama }}</span>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <span class="text-secondary text-xs ">{{ $post->user->name }}</span>
+                                                        class="text-secondary text-xs ">{{ $user->registration_date }}</span>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center" style="gap:4px">
-                                                        <a href="/dashboard/posts/{{ $post->slug }}">
+                                                        <a href="/dashboard/posts/{{ $user->id }}">
                                                             <button class="badge bg-primary border-0"><i
-                                                                    class="fas fa-eye"></i>
+                                                                    class="fas fa-eye"></i> Verifikasi
                                                             </button>
                                                         </a>
-                                                        <a>
-                                                            <a href="/dashboard/posts/{{ $post->slug }}/edit"><button
-                                                                    class="badge bg-warning border-0"><i
-                                                                        class="fas fa-edit"></i>
-                                                                </button></a>
-                                                        </a>
-                                                        <form action="/dashboard/posts/{{ $post->slug }}" method="post"
-                                                            class="d-inline">
-                                                            @method('delete')
-                                                            @csrf
-                                                            <button class="badge bg-gradient-danger border-0 "
-                                                                onclick="confirmDelete(event)">
-                                                                <i class="fas fa-trash"></i></button>
-                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>

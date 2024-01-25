@@ -20,7 +20,7 @@ class Post extends Model
     }
 
     public function postImage(){
-        return $this->hasOne(PostImage::class);
+        return $this->hasMany(PostImage::class);
     }
 
     public function getRouteKeyName()

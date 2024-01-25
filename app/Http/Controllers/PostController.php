@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostImage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
-use App\Models\PostImage;
+
+use Illuminate\Support\Facades\Storage;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
 
 class PostController extends Controller
 {
@@ -26,7 +28,7 @@ class PostController extends Controller
         }
 
         return view('admin.posts.index', [
-            'posts' => $posts
+            'posts' => $posts,
         ]);
     }
 
@@ -35,8 +37,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        $categories = Category::orderBy('nama')->get();
         return view('admin.posts.create', [
             // 'posts' => $posts
+            'categories' => $categories,
         ]);
     }
 
@@ -55,8 +59,20 @@ class PostController extends Controller
         $validatedData['judul'] = strtoupper($validatedData['judul']);
 
         if ($request->file('gambar')) {
-            $validatedData['gambar'] = $request->file('gambar')->store('gambar-header');
+            // Get the path to the stored image
+            $imagePath = $request->file('gambar')->store('gambar-header');
+
+            // Full path to the stored image
+            $fullImagePath = storage_path('app/public/' . $imagePath);
+
+            // Optimize the image to a maximum file size (1 MB in this example)
+            $maxFileSize = 1024; // in kilobytes (1 MB)
+            $optimizerChain = OptimizerChainFactory::create();
+            $optimizerChain->optimize($fullImagePath, null, $maxFileSize);
+
+            $validatedData['gambar'] = $imagePath;
         }
+
 
         $validatedData['user_id'] = Auth()->user()->id;
 
@@ -67,11 +83,17 @@ class PostController extends Controller
 
         $validatedData['slug'] = $baseSlug . '-' . ($count + 1);
 
-        $post = Post::create($validatedData);
+        $post=Post::create($validatedData);
 
         if ($request->hasFile('post_gambar')) {
+            $uploadedFiles = $request->file('post_gambar');
+
+            if (count($uploadedFiles) > 4) {
+                return redirect()->back()->withErrors(['post_gambar' => 'Maksimal hanya 4 gambar']);
+            }
+
             foreach ($request->file('post_gambar') as $gambar_satuan) {
-                if ($gambar_satuan->isValid() && $gambar_satuan->isFile() && $gambar_satuan->isImage()) {
+                if ($gambar_satuan->isValid() && $gambar_satuan->isFile() && in_array($gambar_satuan->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
                     $gambarPath = $gambar_satuan->store('gambar-post');
 
                     PostImage::create([
@@ -82,7 +104,9 @@ class PostController extends Controller
             }
         }
 
-        return redirect('/dashboard/posts');
+        session()->flash('success', 'Postingan ' . $validatedData['judul'] . ' Berhasil dibuat');
+        // return redirect('/dashboard/posts/'. $validatedData['slug']);
+        return redirect('/dashboard/posts/');
     }
 
     /**
@@ -103,7 +127,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $categories = Category::orderBy('nama')->get();
+        return view('admin.posts.edit', [
+            'post' => $post,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -111,7 +139,55 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validatedData = $request->validate([
+            'judul' => 'required',
+            'konten' => 'required',
+            'gambar' => 'image',
+            'category_id' => 'required'
+        ]);
+
+
+        if ($request->file('gambar')) {
+            //jika ada gambar baru ganti gambar lama, maka hapus gambar lama dulu
+            if ($request->gambar) {
+                Storage::delete($post->gambar);
+            }
+            $validatedData['gambar'] = $request->file('gambar')->store('gambar-header');
+        }
+
+
+        $baseSlug = Str::slug($validatedData['judul']);
+        $count = Post::latest()->count();
+        $validatedData['slug'] = $baseSlug . '-' . ($count + 1);
+
+
+        $post->update($validatedData);
+
+
+        if($request->hasFile('post_gambar')){
+            foreach($request->file('post_gambar') as $gambar_satuan){
+                if($gambar_satuan->isValid() && $gambar_satuan->isFile() && in_array($gambar_satuan->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])){
+                    $gambarPath = $gambar_satuan->store('gambar-post');
+
+                    PostImage::create([
+                        'gambar' => $gambarPath,
+                        'post_id' => $post->id,
+                    ]);
+                }
+            }
+        }
+
+
+        if(!empty($request->gambarDihapus)){
+            foreach($request->gambarDihapus as $gambarDihapus){
+                $postImage = PostImage::find($gambarDihapus);
+                Storage::delete($postImage->gambar);
+                $postImage->delete();
+            }
+        }
+
+        session()->flash('success', 'Postingan ' . $validatedData['judul'] . ' Berhasil Diubah');
+        return redirect('/dashboard/posts/'. $validatedData['slug']);
     }
 
     /**
@@ -119,7 +195,18 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->gambar) {
+            Storage::delete($post->gambar);
+        }
+
+        if ($post->post_images) {
+            foreach ($post->post_images as $post_image) {
+                Storage::delete($post_image->gambar);
+            }
+        }
         Post::destroy($post->id);
+
+
         session()->flash('success', 'Postingan ' . $post->judul . ' Berhasil Dihapus');
         return redirect('/dashboard/posts');
     }

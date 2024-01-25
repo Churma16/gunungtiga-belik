@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-self-start mx-3 pt-3" style="gap: 6px ">
-                        <a class="btn btn-warning"><i class="fas fa-edit"></i> Edit Postingan</a>
+                        <a class="btn btn-warning" href="/dashboard/posts/{{ $post->slug }}/edit"><i class="fas fa-edit"></i> Edit Postingan</a>
                         <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
@@ -24,9 +24,40 @@
                     </div>
                     <div class="card mt-4 px-5 pt-3">
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2  align-self-center">
-                            <div class="col-lg-10 col-md-12 ">
-                                <img class="border-radius-lg w-100" src="{{ asset('storage/' . $post->gambar) }}"
-                                    alt="Image placeholder" style="max-width: 100%">
+                            <div class="col-md-10 mx-auto">
+                                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                            class="active"></li>
+                                        @foreach ($post->postImage as $post_image)
+                                            <li data-target="#carouselExampleIndicators"
+                                                data-bs-slide-to="{{ $loop->iteration }}"></li>
+                                        @endforeach
+                                    </ol>
+                                    <div class="carousel-inner border-radius-lg">
+                                        <div class="carousel-item active">
+                                            <img class="d-block w-100" src="{{ asset('storage/' . $post->gambar) }}"
+                                                alt="dokumentasi {{ $post->judul }}">
+                                        </div>
+                                        @foreach ($post->postImage as $post_image)
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100"
+                                                    src="{{ asset('storage/' . $post_image->gambar) }}"
+                                                    alt="First slide">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators"
+                                        role="button" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators"
+                                        role="button" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <!-- Card body -->
@@ -51,4 +82,26 @@
 @endsection
 
 @section('scripts')
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: "{{ session('success') }}",
+                timer: 3000, // This will automatically close the SweetAlert after 3 seconds
+                showConfirmButton: false
+            });
+        </script>
+    @endif
+    @if (session('failed'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: "{{ session('failed') }}",
+                timer: 5000, // This will automatically close the SweetAlert after 3 seconds
+                showConfirmButton: false
+            });
+        </script>
+    @endif
 @endsection

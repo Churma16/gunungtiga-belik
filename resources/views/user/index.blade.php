@@ -1,3 +1,4 @@
+{{-- @dd($posts->count()) --}}
 @extends('user.layouts.main')
 
 @section('content')
@@ -21,18 +22,20 @@
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col-md-6 col-sm-12 ">
-                        <div class="row">
-                            <div class="col-8 col-sm-8">
-                                <div class="input-group input-group-outline">
-                                    <label class="form-label">Masukan Judul Berita...</label>
-                                    <input type="text" class="form-control mb-sm-0">
+                        <form action="/" method="GET">
+                            <div class="row">
+                                <div class="col-8 col-sm-8">
+                                    <div class="input-group input-group-outline">
+                                        <label class="form-label">Masukan Judul Berita...</label>
+                                        <input type="text" class="form-control mb-sm-0" name="search">
+                                    </div>
+                                </div>
+                                <div class="col-4 ps-0 align-self-end">
+                                    <button type="submit"
+                                        class="btn bg-gradient-info mb-0 h-100 position-relative z-index-2">Cari</button>
                                 </div>
                             </div>
-                            <div class="col-4 ps-0 align-self-end">
-                                <button type="button"
-                                    class="btn bg-gradient-info mb-0 h-100 position-relative z-index-2">Cari</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                     <div class="col-md-4 col-sm-12 d-flex mt-sm-2" style="gap:12px">
                         <div class="input-group input-group-outline">
@@ -65,163 +68,61 @@
                             akhir ini.</p>
                     </div>
                 </div>
-                @foreach ($posts as $post)
+                @if ($posts->count() == 0)
                     <div class="row mt-5">
                         <div class="col-lg-12 col-12">
-                            <div class="card card-profile mt-4">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-12  d-flex flex-column justify-content-center">
-                                        <a href="/detail-post/">
-                                            <div class="p-3 py-auto pe-md-0">
-                                                <img class="border-radius-md shadow-lg"
-                                                    src="{{ asset('storage/' . $post->gambar) }}" alt="image"
-                                                    style="width: 100%;">
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="col-lg-9 col-md-6 col-12 my-auto">
-                                        <div class="card-body ps-lg-0">
+                            <div class="card card-profile mt-4 ">
+                                <div class="card-header text-center fw-bold"><h4>Tidak ditemukan Postingan</h4></div>
+                                <div class="card-footer d-flex justify-content-center"><small>Gunakan kata kunci lain.</small></div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    @foreach ($posts as $post)
+                        <div class="row mt-5">
+                            <div class="col-lg-12 col-12">
+                                <div class="card card-profile mt-4">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-12  d-flex flex-column justify-content-center">
                                             <a href="/detail-post/{{ $post->slug }}">
-                                                <h5 class="mb-0">{{ $post->judul }}</h5>
+                                                <div class="p-3 py-auto pe-md-0">
+                                                    <img class="border-radius-md shadow-lg"
+                                                        src="{{ asset('storage/' . $post->gambar) }}" alt="image"
+                                                        style="width: 100%;">
+                                                </div>
                                             </a>
-                                            <div class="d-flex" style="gap:8px">
-                                                <small><i class="fas fa-clock"></i> {{ $post->post_format_date }}</small>
-                                                <small><i class="fas fa-user"></i> <a
-                                                        href="/author/{{ $post->user->name }}">{{ $post->user->name }}</a></small>
-                                                <small><i class="fas fa-folder-open"></i>
-                                                    <a
-                                                        href="/category/{{ $post->category->nama }}">{{ $post->category->nama }}</a></small>
+                                        </div>
+                                        <div class="col-lg-9 col-md-6 col-12 my-auto">
+                                            <div class="card-body ps-lg-0">
+                                                <a href="/detail-post/{{ $post->slug }}">
+                                                    <h5 class="mb-0">{{ $post->judul }}</h5>
+                                                </a>
+                                                <div class="d-flex" style="gap:8px">
+                                                    <small><i class="fas fa-clock"></i>
+                                                        {{ $post->post_format_date }}</small>
+                                                    <small><i class="fas fa-user"></i> <a
+                                                            href="/author/{{ $post->user->name }}">{{ $post->user->name }}</a></small>
+                                                    <small><i class="fas fa-folder-open"></i>
+                                                        <a
+                                                            href="/category/{{ $post->category->nama }}">{{ $post->category->nama }}</a></small>
+                                                </div>
+                                                <p class="mb-0 mt-2">{!! $post->post_excerpt !!}... <a class="text-bold"
+                                                        href="/detail-post/{{ $post->slug }}">Baca lebih lanjut...</a>
+                                                </p>
                                             </div>
-                                            <p class="mb-0 mt-2">{!! $post->post_excerpt !!}... <a class="text-bold"
-                                                    href="/detail-post/{{ $post->slug }}">Baca lebih lanjut...</a></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-                <div class="row mt-4">
-                    <div class="col-lg-6 col-12">
-                        <div class="card card-profile mt-4 z-index-2">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6 col-12 mt-n5">
-                                    <a href="javascript:;">
-                                        <div class="p-3 pe-md-0">
-                                            <img class="w-100 border-radius-md shadow-lg"
-                                                src="/assets/img/ivana-squares.jpg" alt="image">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-lg-8 col-md-6 col-12 my-auto">
-                                    <div class="card-body ps-lg-0">
-                                        <h5 class="mb-0">Ivana Flow</h5>
-                                        <h6 class="text-info">Athlete</h6>
-                                        <p class="mb-0">Artist is a term applied to a person who engages in an
-                                            activity deemed to be an art.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12">
-                        <div class="card card-profile mt-lg-4 mt-5 z-index-2">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6 col-12 mt-n5">
-                                    <a href="javascript:;">
-                                        <div class="p-3 pe-md-0">
-                                            <img class="w-100 border-radius-md shadow-lg" src="/assets/img/ivana-square.jpg"
-                                                alt="image">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-lg-8 col-md-6 col-12 my-auto">
-                                    <div class="card-body ps-lg-0">
-                                        <h5 class="mb-0">Marquez Garcia</h5>
-                                        <h6 class="text-info">JS Developer</h6>
-                                        <p class="mb-0">Artist is a term applied to a person who engages in an
-                                            activity deemed to be an art.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="py-sm-7 py-5 position-relative">
-            <div class="container">
+                    @endforeach
+                @endif
 
-                <div class="row">
-                    <div class="col-lg-12 col-12">
-                        <div class="card card-profile mt-4">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-6 col-12 mt-n5">
-                                    <a href="javascript:;">
-                                        <div class="p-3 pe-md-0">
-                                            <img class=" border-radius-md shadow-lg" src="/assets/img/senja-belik.png"
-                                                style="width: 240px" alt="image">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-lg-9 col-md-6 col-12 my-auto">
-                                    <div class="card-body ps-lg-0">
-                                        <h5 class="mb-0">Emma Roberts</h5>
-                                        <h6 class="text-info">UI Designer</h6>
-                                        <p class="mb-0">Artist is a term applied to a person who engages in an
-                                            activity deemed to be an art.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 mx-auto">
-                        <div class="mt-n8 mt-md-n9 text-center">
-                            <img class="avatar avatar-xxl shadow-xl position-relative z-index-2"
-                                src="../assets/img/bruce-mars.jpg" alt="bruce" loading="lazy">
-                        </div>
-                        <div class="row py-5">
-                            <div class="col-lg-7 col-md-7 z-index-2 position-relative px-md-2 px-sm-5 mx-auto">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h3 class="mb-0">Michael Roven</h3>
-                                    <div class="d-block">
-                                        <button type="button"
-                                            class="btn btn-sm btn-outline-info text-nowrap mb-0">Follow</button>
-                                    </div>
-                                </div>
-                                <div class="row mb-4">
-                                    <div class="col-auto">
-                                        <span class="h6">323</span>
-                                        <span>Posts</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <span class="h6">3.5k</span>
-                                        <span>Followers</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <span class="h6">260</span>
-                                        <span>Following</span>
-                                    </div>
-                                </div>
-                                <p class="text-lg mb-0">
-                                    Decisions: If you can’t decide, the answer is no.
-                                    If two equally difficult paths, choose the one more
-                                    painful in the short term (pain avoidance is creating
-                                    an illusion of equality). Choose the path that leaves
-                                    you more equanimous. <br><a href="javascript:;" class="text-info icon-move-right">More
-                                        about me
-                                        <i class="fas fa-arrow-right text-sm ms-1"></i>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
-        <!-- END Testimonials w/ user image & text & info -->
+        <div class="d-flex justify-content-center mt-2">
+            {{ $posts->links() }}
+        </div>
         <!-- START Blogs w/ 4 cards w/ image & text & link -->
         <section class="py-3">
             <div class="container">

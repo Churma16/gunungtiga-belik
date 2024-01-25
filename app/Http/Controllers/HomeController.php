@@ -12,7 +12,14 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->get();
+        if(request('search')){
+            $posts = Post::where('judul', 'like', '%' . request('search') . '%')->latest()->paginate(10);
+            $title = 'Hasil Pencarian: ' . request('search');
+        }
+        else{
+            $posts = Post::latest()->paginate(10);
+            $title = 'Berita Terbaru';
+        }
 
         foreach ($posts as $post) {
             $post->konten = strip_tags($post->konten);
@@ -21,13 +28,11 @@ class HomeController extends Controller
         $distinctYears = $this->getDistinctYears($posts);
         $distinctCategories = $this->getDistinctCategories();
 
-
         return view('user.index', [
-            'title' => 'Berita Terkini',
+            'title' => $title,
             'posts' => $posts,
             'distinctYears' => $distinctYears,
             'distinctCategories' => $distinctCategories,
-
         ]);
     }
 
@@ -55,7 +60,7 @@ class HomeController extends Controller
     public function showByAuthor($author_name)
     {
         $user = User::where('name', $author_name)->first();
-        $posts = Post::where('user_id', $user->id)->latest()->get();
+        $posts = Post::where('user_id', $user->id)->latest()->paginate(10);
 
         foreach ($posts as $post) {
             $post->konten = strip_tags($post->konten);
@@ -75,7 +80,7 @@ class HomeController extends Controller
     public function showByCategory($category_name)
     {
         $category = Category::where('nama', $category_name)->first();
-        $posts = Post::where('category_id', $category->id)->latest()->get();
+        $posts = Post::where('category_id', $category->id)->latest()->paginate(10);
 
         foreach ($posts as $post) {
             $post->konten = strip_tags($post->konten);
@@ -95,7 +100,8 @@ class HomeController extends Controller
 
     public function showByYear($year)
     {
-        $posts = Post::whereYear('created_at', $year)->latest()->get();
+
+        $posts = Post::whereYear('created_at', $year)->latest()->paginate(10);
 
         foreach ($posts as $post) {
             $post->konten = strip_tags($post->konten);

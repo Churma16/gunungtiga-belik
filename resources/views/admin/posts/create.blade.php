@@ -26,54 +26,89 @@
                         <form enctype="multipart/form-data" method="post" action="/dashboard/posts">
                             @csrf <div class="card-body px-4 pb-2">
                                 <div class="row">
-                                    <div class="col-md-10 col-lg-12">
+                                    <div class="col-md-12 col-lg-12">
                                         <h5 class="required">Judul Postingan</h5>
-                                        <div class="input-group input-group-outline my-3">
-                                            <input type="text" class="form-control" name="judul" required>
+                                        <div class="input-group input-group-outline ">
+                                            <input type="text" class="form-control" name="judul"
+                                                placeholder="Masukan judul postingan..." required>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-md-10 col-lg-12">
-                                        <h5 class="required">Kategori</h5>
-                                        <div class="input-group input-group-outline my-3">
-                                            <select class="form-control" name="category_id" required>
-                                                <option value="">Pilih Kategori</option>
-                                                <option value="1">test</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-md-10 col-lg-3">
-                                        <h5 class="required">Gambar Header</h5>
-                                        <img id="image_preview" class="mx-auto mt-2" src="" alt="Preview Image"
-                                            style=" max-width: 100%; display: none; border-radius: 8px">
-                                        <div class="input-group input-group-outline my-3">
-                                            <label class="form-label"></label>
-                                            <input type="file" class="form-control" name="gambar" id="gambar_header"
-                                                onchange="previewImage()" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-md-10 col-lg-12">
-                                        <h5 class="required">Isi Konten</h5>
-                                        <input id="konten" value="{{ old('konten') }}" type="hidden" name="konten" required>
-                                        <trix-editor input="konten"></trix-editor>
+                                        @error('judul')
+                                            <small class="text-danger mb-3">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="row mt-4">
-                                    <div class="col-md-10 col-lg-3">
-                                        <h5>Gambar Postingan</h5>
-                                        <div class="input-group input-group-outline my-3">
-                                            <label class="form-label"></label>
-                                            <input type="file" class="form-control" name="post_gambar[]" multiple>
+                                    <div class="col-md-12 col-lg-12">
+                                        <h5 class="required">Kategori</h5>
+                                        <div class="input-group input-group-outline ">
+                                            <select class="form-control" name="category_id" required>
+                                                <option class="opacity-5" value="">Pilih Kategori</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->nama }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('category_id')
+                                                <small class="text-danger mb-3">
+                                                    {{ $message }}
+                                                </small>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-12 col-lg-3">
+                                        <h5 class="required">Gambar Header</h5>
+                                        <img id="image_preview" class="mx-auto mt-2" src="" alt="Preview Image"
+                                            style="max-width: 120%; display: none; border-radius: 8px">
+                                        <div class="input-group input-group-outline ">
+                                            <label class="form-label"></label>
+                                            <input type="file" class="form-control" name="gambar" id="gambar_header"
+                                                onchange="compressAndPreviewImage()">
+                                        </div>
+                                        @error('gambar')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                        <small class="text-info mb-3">
+                                            *Ukuran gambar maksimal 2MB
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-12 col-lg-12">
+                                        <h5 class="required">Isi Konten</h5>
+                                        <input id="konten" value="{{ old('konten') }}" type="hidden" name="konten"
+                                            required>
+                                        <trix-editor input="konten"></trix-editor>
+                                        @error('konten')
+                                            <small class="text-danger mb-3">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-md-12 col-lg-3">
+                                        <h5>Gambar Postingan</h5>
+                                        <div class="input-group input-group-outline ">
+                                            <label class="form-label"></label>
+                                            <input type="file" class="form-control" name="post_gambar[]" multiple>
+                                        </div>
+                                        @error('post_gambar')
+                                            <small class="text-danger">
+                                                {{ $message }}
+                                            </small>
+                                        @enderror
+                                    </div>
+                                    <small class="text-info mb-3">
+                                        *Maksimal 4 gambar dengan ukuran maksimal 2MB.
+                                    </small>
+                                </div>
 
-                                <button class="btn btn-primary mt-3" type="submit">Upload
+                                <button class="btn btn-primary mt-3" type="submit">Posting
                                 </button>
                             </div>
                         </form>
@@ -85,24 +120,39 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.0.7/compressor.min.js"></script>
     <script>
-        function previewImage() {
-            var input = document.getElementById('gambar_header');
-            var imagePreview = document.getElementById('image_preview');
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block'; // Show the image preview
-                };
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                imagePreview.src = '';
-                imagePreview.style.display = 'none'; // Hide the image preview
+        function compressAndPreviewImage() {
+            const imageInput = document.getElementById('gambar_header');
+            const previewImage = document.getElementById('image_preview');
+
+            const file = imageInput.files[0];
+
+            if (file) {
+                // Compress the image using Compressor.js
+                new Compressor(file, {
+                    quality: 0.5, // Adjust quality as needed (0-1)
+                    success(result) {
+                        // Preview the compressed image
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            previewImage.src = e.target.result;
+                            previewImage.style.display = 'block';
+                        };
+                        reader.readAsDataURL(result);
+
+                        // Replace the original file input with the compressed image
+                        const compressedFile = new File([result], file.name, {
+                            type: file.type
+                        });
+                        imageInput.files = [compressedFile];
+                    },
+                    error(err) {
+                        console.error('Compression failed:', err);
+                        // Handle compression errors here
+                    }
+                });
             }
         }
-
-        // Attach the previewImage function to the file input change event
-        document.getElementById('gambarInput').addEventListener('change', previewImage);
     </script>
 @endsection
