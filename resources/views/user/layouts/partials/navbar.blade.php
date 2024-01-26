@@ -88,11 +88,11 @@
                             <a href="/kelembagaan/bpd" class="dropdown-item border-radius-md">
                                 <span>Badan Permusyawaratan Desa (BPD)</span>
                             </a>
-                            <a href="/kelembagaan/pkk" class="dropdown-item border-radius-md">
-                                <span>Pembina Kesejahteraan Keluarga (PKK)</span>
-                            </a>
                             <a href="/kelembagaan/lpmd" class="dropdown-item border-radius-md">
                                 <span>Lembaga Pemberdayaan Masyarakat Desa (LPMD)</span>
+                            </a>
+                            <a href="/kelembagaan/pkk" class="dropdown-item border-radius-md">
+                                <span>Pembina Kesejahteraan Keluarga (PKK)</span>
                             </a>
                             <a href="/kelembagaan/karang-taruna" class="dropdown-item border-radius-md">
                                 <span>Karang Taruna</span>
@@ -104,7 +104,7 @@
                     <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                         id="dropdownMenuPages8" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="material-icons opacity-6 me-2 text-md">info</i>
-                        informasi
+                        Informasi
                         <img src="/assets/img/down-arrow-white.svg" alt="down-arrow"
                             class="arrow ms-2 d-lg-block d-none">
                         <img src="/assets/img/down-arrow-dark.svg" alt="down-arrow"

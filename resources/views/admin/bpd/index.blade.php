@@ -22,7 +22,7 @@
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                             <h6 class="text-white text-capitalize ps-3">
-                                Tabel Pemerintah Desa
+                                Tabel Badan Permusyawaratan Desa (BPD)
                             </h6>
                         </div>
                     </div>
@@ -59,43 +59,42 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tablecontents">
-                                    @if (count($villageGovernments) == 0)
+                                    @if (count($bpds) == 0)
                                         <tr>
                                             <td colspan="5">
                                                 <p class="text-xs font-weight-bold mb-0 text-center">
-                                                    Tidak Ada Data Pemerintah Desa
+                                                    Tidak Ada Data Anggota BPD
                                                 </p>
                                             </td>
                                         </tr>
                                     @else
-                                        @foreach ($villageGovernments as $villageGovernment)
-                                            <tr data-id="{{ $villageGovernment->id }}" class="row1">
+                                        @foreach ($bpds as $bpd)
+                                            <tr data-id="{{ $bpd->id }}" class="row1">
                                                 <td class="">
                                                     <span class="text-secondary  text-xs font-weight-bold ps-4"><i
                                                             class="fa fa-sort"></i></span>
                                                 </td>
                                                 <td class="align-middle">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $villageGovernment->nama }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $bpd->nama }}</span>
                                                 </td>
                                                 <td class="align-middle">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $villageGovernment->jabatan }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $bpd->jabatan }}</span>
                                                 </td>
                                                 <td class="align-middle">
                                                     <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $villageGovernment->formatted_purna_tugas }}</span>
+                                                        class="text-secondary text-xs font-weight-bold">{{ $bpd->formatted_purna_tugas }}</span>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <a>
                                                         <button data-bs-toggle="modal"
-                                                            data-bs-target="#editDataModal{{ $villageGovernment->id }}"
+                                                            data-bs-target="#editDataModal{{ $bpd->id }}"
                                                             class="badge bg-warning border-0"><i class="fas fa-edit"></i>
                                                         </button>
                                                     </a>
-                                                    <form
-                                                        action="/dashboard/village-governments/{{ $villageGovernment->id }}"
-                                                        method="post" class="d-inline">
+                                                    <form action="/dashboard/bpds/{{ $bpd->id }}" method="post"
+                                                        class="d-inline">
                                                         @method('delete')
                                                         @csrf
                                                         <button class="badge bg-gradient-danger border-0 "
@@ -105,14 +104,13 @@
                                                 </td>
                                             </tr>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="editDataModal{{ $villageGovernment->id }}"
-                                                tabindex="-1" role="dialog"
-                                                aria-labelledby="editData{{ $villageGovernment->id }}" aria-hidden="true">
+                                            <div class="modal fade" id="editDataModal{{ $bpd->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="editData{{ $bpd->id }}"
+                                                aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title"
-                                                                id="editData{{ $villageGovernment->id }}">
+                                                            <h5 class="modal-title" id="editData{{ $bpd->id }}">
                                                                 Edit
                                                                 Kategori</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -120,9 +118,7 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form
-                                                            action="/dashboard/village-governments/{{ $villageGovernment->id }}"
-                                                            method="POST">
+                                                        <form action="/dashboard/bpds/{{ $bpd->id }}" method="POST">
                                                             @csrf
                                                             @method('put')
                                                             <div class="modal-body">
@@ -132,8 +128,7 @@
                                                                         <input type="text" name="nama" id="nama"
                                                                             class="form-control p-2 @error('nama') is-invalid @enderror"
                                                                             placeholder="Masukan nama kategori"
-                                                                            value="{{ old('nama', $villageGovernment->nama) }}"
-                                                                            required>
+                                                                            value="{{ old('nama', $bpd->nama) }}" required>
                                                                     </div>
                                                                     @error('nama')
                                                                         <div class="text-sm text-danger">{{ $message }}
@@ -147,44 +142,22 @@
                                                                             required>
                                                                             <option class="opacity-5" value="">Pilih
                                                                                 Jabatan</option>
-                                                                            <option value="Kepala Desa"
-                                                                                @if ($villageGovernment->jabatan == 'Kepala Desa') selected @endif>
-                                                                                Kepala Desa</option>
-                                                                            <option value="Sekretaris Desa"
-                                                                                @if ($villageGovernment->jabatan == 'Sekretaris Desa') selected @endif>
-                                                                                Sekretaris Desa
+                                                                            <option value="Ketua BPD"
+                                                                                @if ($bpd->jabatan == 'Ketua BPD') selected @endif>
+                                                                                Ketua BPD</option>
+                                                                            <option value="Wakil Ketua BPD"
+                                                                                @if ($bpd->jabatan == 'Wakil Ketua BPD') selected @endif>
+                                                                                Wakil Ketua BPD
                                                                             </option>
-                                                                            <option value="Kaur Umum"
-                                                                                @if ($villageGovernment->jabatan == 'Kaur Umum') selected @endif>
-                                                                                Kaur Umum</option>
-                                                                            <option value="Kaur Pembangunan"
-                                                                                @if ($villageGovernment->jabatan == 'Kaur Pembangunan') selected @endif>
-                                                                                Kaur
-                                                                                Pembangunan</option>
-                                                                            <option value="Kaur Keuangan"
-                                                                                @if ($villageGovernment->jabatan == 'Kaur Keuangan') selected @endif>
-                                                                                Kaur Keuangan
+                                                                            <option value="Sekretaris BPD"
+                                                                                @if ($bpd->jabatan == 'Sekretaris BPD') selected @endif>
+                                                                                Sekretaris BPD
                                                                             </option>
-                                                                            <option value="Kasi Pemerintahan"
-                                                                                @if ($villageGovernment->jabatan == 'Kasi Pemerintahan') selected @endif>
-                                                                                Kasi
-                                                                                Pemerintahan</option>
-                                                                            <option value="Kasi Pelayanan"
-                                                                                @if ($villageGovernment->jabatan == 'Kasi Pelayanan') selected @endif>
-                                                                                Kasi Pelayanan
+                                                                            <option value="Anggota BPD"
+                                                                                @if ($bpd->jabatan == 'Anggota BPD') selected @endif>
+                                                                                Anggota BPD
                                                                             </option>
-                                                                            <option value="Kaur Keuangan"
-                                                                                @if ($villageGovernment->jabatan == 'Kaur Keuangan') selected @endif>
-                                                                                Kaur Keuangan
-                                                                            </option>
-                                                                            <option value="Kepala Dusun I"
-                                                                                @if ($villageGovernment->jabatan == 'Kepala Dusun I') selected @endif>
-                                                                                Kepala Dusun I
-                                                                            </option>
-                                                                            <option value="Kepala Dusun II"
-                                                                                @if ($villageGovernment->jabatan == 'Kepala Dusun II') selected @endif>
-                                                                                Kepala Dusun II
-                                                                            </option>
+
                                                                         </select>
                                                                         @error('jabatan')
                                                                             <small class="text-danger mb-3">
@@ -200,7 +173,7 @@
                                                                             id="purna_tugas"
                                                                             class="form-control p-2 @error('purna_tugas') is-invalid @enderror"
                                                                             placeholder="Masukan purna_tugas kategori"
-                                                                            value="{{ old('purna_tugas', $villageGovernment->purna_tugas) }}"
+                                                                            value="{{ old('purna_tugas', $bpd->purna_tugas) }}"
                                                                             required>
                                                                     </div>
                                                                     @error('purna_tugas')
@@ -242,7 +215,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/dashboard/village-governments" method="POST">
+                <form action="/dashboard/bpds" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="">
@@ -260,17 +233,19 @@
                             <strong>jabatan</strong>
                             <div class="input-group input-group-outline ">
                                 <select class="form-control" name="jabatan" required>
-                                    <option class="opacity-5" value="">Pilih Jabatan</option>
-                                    <option value="Kepala Desa">Kepala Desa</option>
-                                    <option value="Sekretaris Desa">Sekretaris Desa</option>
-                                    <option value="Kaur Umum">Kaur Umum</option>
-                                    <option value="Kaur Pembangunan">Kaur Pembangunan</option>
-                                    <option value="Kaur Keuangan">Kaur Keuangan</option>
-                                    <option value="Kasi Pemerintahan">Kasi Pemerintahan</option>
-                                    <option value="Kasi Pelayanan">Kasi Pelayanan</option>
-                                    <option value="Kaur Keuangan">Kaur Keuangan</option>
-                                    <option value="Kepala Dusun I">Kepala Dusun I</option>
-                                    <option value="Kepala Dusun II">Kepala Dusun II</option>
+                                    <option class="opacity-5" value="">Pilih
+                                        Jabatan</option>
+                                    <option value="Ketua BPD">
+                                        Ketua BPD</option>
+                                    <option value="Wakil Ketua BPD">
+                                        Wakil Ketua BPD
+                                    </option>
+                                    <option value="Sekretaris BPD">
+                                        Sekretaris BPD
+                                    </option>
+                                    <option value="Anggota BPD">
+                                        Anggota BPD
+                                    </option>
                                 </select>
                                 @error('jabatan')
                                     <small class="text-danger mb-3">
@@ -331,7 +306,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: "json",
-                    url: "{{ url('/village-governments/custom-sortable') }}",
+                    url: "{{ url('/bpds/custom-sortable') }}",
                     data: {
                         order: order,
                         _token: token
@@ -359,7 +334,7 @@
         </script>
     @endif
     @if (session('failed'))
-        <script script>
+        <script>
             Swal.fire({
                 icon: 'error',
                 title: 'Error!',

@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BPDController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LPMDController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
@@ -96,6 +98,18 @@ Route::resource('/dashboard/categories', CategoryController::class);
 
 Route::resource('/dashboard/village-governments', VillageGovernmentController::class);
 Route::post('/village-governments/custom-sortable', [VillageGovernmentController::class, 'updateOrder']);
+
+Route::resource('/dashboard/bpds', BPDController::class);
+Route::post('/bpds/custom-sortable', [BPDController::class, 'updateOrder']);
+
+Route::resource('/dashboard/lpmds', LPMDController::class);
+Route::post('/lpmds/custom-sortable', [LPMDController::class, 'updateOrder']);
+
+// Route::resource('/dashboard/pkks', PKKController::class);
+// Route::post('/pkks/custom-sortable', [PKKController::class, 'updateOrder']);
+
+// Route::resource('/dashboard/karang-tarunas', KarangTarunaController::class);
+// Route::post('/karang-tarunas/custom-sortable', [KarangTarunaController::class, 'updateOrder']);
 
 
 Route::get('/dashboard/users', [UserController::class, 'index']);

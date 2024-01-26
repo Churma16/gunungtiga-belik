@@ -44,8 +44,9 @@ class VillageGovernmentController extends Controller
 
         $validatedData['order'] = VillageGovernment::count() + 1;
 
-        VillageGovernment::create($validatedData);
+        $villageGovernment=VillageGovernment::create($validatedData);
 
+        session()->flash('success', 'Data ' . $villageGovernment['nama'] . ' Berhasil Dihapus');
         return redirect('/dashboard/village-governments');
     }
 
@@ -79,6 +80,7 @@ class VillageGovernmentController extends Controller
 
         $villageGovernment->update($validatedData);
 
+        session()->flash('success', 'Data ' . $villageGovernment['nama'] . ' Berhasil Diubah');
         return redirect('/dashboard/village-governments');
     }
 
