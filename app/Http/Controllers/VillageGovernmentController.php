@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\VillageGovernment;
 use App\Http\Requests\StoreVillageGovernmentRequest;
 use App\Http\Requests\UpdateVillageGovernmentRequest;
+use Illuminate\Http\Request;
 
 class VillageGovernmentController extends Controller
 {
@@ -31,9 +32,21 @@ class VillageGovernmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreVillageGovernmentRequest $request)
+    public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'purna_tugas' => 'required|date',
+        ]);
+
+
+        $validatedData['order'] = VillageGovernment::count() + 1;
+
+        VillageGovernment::create($validatedData);
+
+        return redirect('/dashboard/village-governments');
     }
 
     /**
@@ -55,9 +68,18 @@ class VillageGovernmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateVillageGovernmentRequest $request, VillageGovernment $villageGovernment)
+    public function update(Request $request, VillageGovernment $villageGovernment)
     {
-        //
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'jabatan' => 'required',
+            'purna_tugas' => 'required|date',
+        ]);
+        // dd($villageGovernment);
+
+        $villageGovernment->update($validatedData);
+
+        return redirect('/dashboard/village-governments');
     }
 
     /**
@@ -65,10 +87,14 @@ class VillageGovernmentController extends Controller
      */
     public function destroy(VillageGovernment $villageGovernment)
     {
-        //
+        $villageGovernment->delete();
+
+        session()->flash('success', 'Data ' . $villageGovernment['nama'] . ' Berhasil Dihapus');
+        return redirect('/dashboard/village-governments');
     }
 
-    public function updateOrder(){
+    public function updateOrder()
+    {
 
         $villageGovernments = VillageGovernment::all();
         foreach ($villageGovernments as $villageGovernment) {

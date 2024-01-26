@@ -1,5 +1,19 @@
 @extends('admin.layouts.main')
 
+@section('styles')
+    <style>
+        table.dataTable,
+        table.dataTable th,
+        table.dataTable td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_paginate {
+            font-size: small;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
@@ -8,7 +22,7 @@
                     <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                         <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                             <h6 class="text-white text-capitalize ps-3">
-                                Tabel Postingan
+                                Tabel Pemerintah Desa
                             </h6>
                         </div>
                     </div>
@@ -22,7 +36,7 @@
                             <table class="table align-items-center mb-0" id="table">
                                 <thead>
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-10"
+                                        <th class="text-uppercase text-center text-secondary text-xs font-weight-bolder opacity-10 ps-2"
                                             style="width: fit-content;">
                                             #
                                         </th>
@@ -39,7 +53,7 @@
                                             Purna Tugas
                                         </th>
                                         <th
-                                            class="text-uppercase text-secondary text-xs font-weight-bolder opacity-10 ps-2">
+                                            class="text-uppercase text-center text-secondary text-xs font-weight-bolder opacity-10 ps-2">
                                             Aksi
                                         </th>
                                     </tr>
@@ -72,7 +86,7 @@
                                                     <span
                                                         class="text-secondary text-xs font-weight-bold">{{ $villageGovernment->formatted_purna_tugas }}</span>
                                                 </td>
-                                                <td class="align-middle">
+                                                <td class="align-middle text-center">
                                                     <a>
                                                         <button data-bs-toggle="modal"
                                                             data-bs-target="#editDataModal{{ $villageGovernment->id }}"
@@ -80,7 +94,7 @@
                                                         </button>
                                                     </a>
                                                     <form
-                                                        action="/dashboard/village-government/{{ $villageGovernment->id }}"
+                                                        action="/dashboard/village-governments/{{ $villageGovernment->id }}"
                                                         method="post" class="d-inline">
                                                         @method('delete')
                                                         @csrf
@@ -106,7 +120,8 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <form action="/dashboard/village-government/{{ $villageGovernment->id }}"
+                                                        <form
+                                                            action="/dashboard/village-governments/{{ $villageGovernment->id }}"
                                                             method="POST">
                                                             @csrf
                                                             @method('put')
@@ -227,7 +242,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/dashboard/categories" method="POST">
+                <form action="/dashboard/village-governments" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="">
@@ -364,8 +379,8 @@
             event.preventDefault();
 
             Swal.fire({
-                title: 'Hapus Kategori?',
-                text: "Kategori yang dihapus tidak dapat dikembalikan!",
+                title: 'Hapus Data?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
