@@ -9,6 +9,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KarangTarunaController;
 use App\Http\Controllers\VillageGovernmentController;
 
 /*
@@ -108,8 +109,8 @@ Route::post('/lpmds/custom-sortable', [LPMDController::class, 'updateOrder']);
 // Route::resource('/dashboard/pkks', PKKController::class);
 // Route::post('/pkks/custom-sortable', [PKKController::class, 'updateOrder']);
 
-// Route::resource('/dashboard/karang-tarunas', KarangTarunaController::class);
-// Route::post('/karang-tarunas/custom-sortable', [KarangTarunaController::class, 'updateOrder']);
+Route::resource('/dashboard/karang-tarunas', KarangTarunaController::class);
+Route::post('/karang-tarunas/custom-sortable', [KarangTarunaController::class, 'updateOrder']);
 
 
 Route::get('/dashboard/users', [UserController::class, 'index']);

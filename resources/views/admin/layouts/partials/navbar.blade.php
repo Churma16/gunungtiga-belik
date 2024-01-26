@@ -15,13 +15,6 @@
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                 </div>
                 <ul class="navbar-nav  justify-content-end">
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center" style="gap:8px">
-                        <h6 class="mb-0">Dark Mode</h6>
-                        <div class="form-check form-switch ps-0 ms-auto my-auto">
-                            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version"
-                                onclick="darkMode(this)">
-                        </div>
-                    </li>
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                             <div class="sidenav-toggler-inner">
@@ -72,7 +65,7 @@
                                             <h6 class="text-sm font-weight-normal mb-1">
                                                 <span class="font-weight-bold">New album</span> by Travis Scott
                                             </h6>
-                                            <p class="text-xs text-secondary mb-0">
+                                        <p class="text-xs text-secondary mb-0">
                                                 <i class="fa fa-clock me-1"></i>
                                                 1 day
                                             </p>
