@@ -73,118 +73,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">1.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Imam Sidik M</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Ketua</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">28 Desember 2018</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">2.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Sahlan</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Wakil Ketua</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">28 Desember 2018</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">3.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Nuruh Wahdah</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Bendahara</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">28 Desember 2018</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">4.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Wahiti</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Sekretaris</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">28 Desember 2018</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">5.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Toyib B</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Anggota</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">28 Desember 2018</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">6.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Mahmudah</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Anggota</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">28 Desember 2018</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">7.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Rihati</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Anggota</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">28 Desember 2018</p>
-                                        </td>
-                                    </tr>
+                                    @foreach ($lpmds as $lpmd)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <h6 class="mb-0 text-xs">{{ $loop->iteration }}</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">{{ $lpmd->nama }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">{{ $lpmd->jabatan }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">
+                                                    {{ $lpmd->formatted_purna_tugas }}</p>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>

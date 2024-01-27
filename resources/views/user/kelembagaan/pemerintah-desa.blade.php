@@ -66,166 +66,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($village_governments as $village_government)
                                     <tr>
                                         <td>
                                             <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">1.</h6>
+                                                <h6 class="mb-0 text-xs">{{ $loop->iteration }}</h6>
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-xs font-weight-normal mb-0">Nahyono</p>
+                                            <p class="text-xs font-weight-normal mb-0">{{ $village_government->nama }}</p>
                                         </td>
                                         <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kepala Desa</p>
+                                            <p class="text-xs font-weight-normal mb-0">{{ $village_government->jabatan }}</p>
                                         </td>
                                         <td>
-                                            <p class="text-xs font-weight-normal mb-0">9 Januari 2025</p>
+                                            <p class="text-xs font-weight-normal mb-0">{{ $village_government->formatted_purna_tugas }}</p>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">2.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Ali Mutarki</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Sekretaris Desa</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">11 Agustus 2036</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">3.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Tuti Iswanti</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kaur Umum</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">15 November 1951</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">4.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Poniman</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kaur Pembangunan</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">18 November 2030</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">5.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Tri Winarti</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kaur Keuangan</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">24 Oktober 2040</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">6.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Sutanto</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kasi Pemerintahan</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">12 Juni 2045</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">7.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Riyanto</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kasi Pelayanan</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">24 Oktober 2039</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">8.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Arisno</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kaur Keuangan</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">24 Oktober 2040</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">9.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Nur Anisyah</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kepala Dusun I</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">30 Maret 2055</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">10.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Eka Nur Hasyim</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kepala Dusun II</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">16 Maret 2039</p>
-                                        </td>
-                                    </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>

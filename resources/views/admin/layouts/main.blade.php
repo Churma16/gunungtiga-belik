@@ -47,6 +47,11 @@
         trix-toolbar .trix-button-group--file-tools {
             display: none;
         }
+
+        .required::after {
+            content: " *";
+            color: red;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-xxxxxx" crossorigin="anonymous" />

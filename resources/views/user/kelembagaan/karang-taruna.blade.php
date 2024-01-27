@@ -75,186 +75,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">1.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Kamso</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Ketua</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">2.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Sutanto</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Sekretaris</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">3.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Ida Ayu Nurul F</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Bendahara 1</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">4.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Siti Nur Janah</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Bendahara 2</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">5.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Roni</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Koordinator Bidang Lingkungan
-                                                    Hidup</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">6.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Oki Nugroho Satrio</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Koordinator Bidang Olahraga</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">7.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Siti Muinah</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Koordinator Bidang Kesejahteraan
-                                                    Sosial</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">8.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Slamet Septianto</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Koordinator Bidang Pendidikan dan
-                                                    Pelatihan, Bidang Humas</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">9.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Riyanto</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Koordinator Bidang Kerohanian</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">10.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">TOYIB</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Koordinator Bidang Kewira usahaan
-                                                </p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 ms-2">
-                                                    <h6 class="mb-0 text-xs">1.</h6>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">AHYAT SUPRIYADI</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">Koordinator Bidang Jurnalis</p>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-normal mb-0">1 Agustus 2019</p>
-                                            </td>
-                                        </tr>
+                                        @foreach ($karang_tarunas as $karang_taruna)
+                                            <tr>
+                                                <td>
+                                                    <div class="d-flex px-2 ms-2">
+                                                        <h6 class="mb-0 text-xs">{{ $loop->iteration }}</h6>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">{{ $karang_taruna->nama }}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">{{ $karang_taruna->jabatan }}
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="text-xs font-weight-normal mb-0">
+                                                        {{ $karang_taruna->formatted_purna_tugas }}</p>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
 
                                     </tbody>
                                 </table>

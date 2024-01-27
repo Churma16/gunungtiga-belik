@@ -20,7 +20,7 @@
                     <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
                         id="dropdownMenuPages8" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="material-icons opacity-6 me-2 text-md">history_edu</i>
-                        Sejarah
+                        Profil
                         <img src="/assets/img/down-arrow-white.svg" alt="down-arrow"
                             class="arrow ms-2 d-lg-block d-none">
                         <img src="/assets/img/down-arrow-dark.svg" alt="down-arrow"
@@ -30,7 +30,7 @@
                         aria-labelledby="dropdownMenuPages8">
                         <div class="d-none d-lg-block">
                             <a href="/profil-desa/sejarah-desa" class="dropdown-item border-radius-md">
-                                <span>Profil Desa</span>
+                                <span>Sejarah Desa</span>
                             </a>
                             <a href="/profil-desa/visi-misi-desa" class="dropdown-item border-radius-md">
                                 <span>Visi & Misi</span>
@@ -41,7 +41,7 @@
                         </div>
                         <div class="d-lg-none">
                             <a href="/profil-desa/sejarah-desa" class="dropdown-item border-radius-md">
-                                <span>Profil Desa</span>
+                                <span>Sejarah Desa</span>
                             </a>
                             <a href="/profil-desa/visi-misi-desa" class="dropdown-item border-radius-md">
                                 <span>Visi & Misi</span>

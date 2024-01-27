@@ -13,10 +13,6 @@
                             </h6>
                         </div>
                     </div>
-                    <div class="d-flex px-3 pt-2">
-                        <a class="btn btn-primary" href="/dashboard/posts/create"><i class="fas fa-plus"></i> Buat
-                            Admin</a>
-                    </div>
                     <div class="card-body px-0 pb-2">
                         <div class="table-responsive p-0">
                             <table class="table align-items-center mb-0">
@@ -74,9 +70,12 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-center" style="gap:4px">
-                                                        <a href="/dashboard/posts/{{ $user->id }}">
-                                                            <button class="badge bg-primary border-0"><i
-                                                                    class="fas fa-eye"></i> Verifikasi
+                                                        <a href="/activate/{{ $user->id }}">
+                                                            <button
+                                                                class="badge {{ $user->email_verified_at ? 'bg-success' : 'bg-primary' }} border-0"
+                                                                {{ $user->email_verified_at ? 'disabled' : '' }}>
+                                                                <i class="fas fa-check-circle"></i>
+                                                                {{ $user->email_verified_at ? 'Terverifikasi' : 'Verifikasi' }}
                                                             </button>
                                                         </a>
                                                     </div>

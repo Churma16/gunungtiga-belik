@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BPDController;
+use App\Http\Controllers\PKKController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LPMDController;
@@ -50,25 +51,15 @@ Route::prefix('profil-desa')->group(function () {
 
 
 Route::prefix('kelembagaan')->group(function () {
-    Route::get('/pemerintah-desa', function () {
-        return view('user.kelembagaan.pemerintah-desa');
-    });
-
-    Route::get('/bpd', function () {
-        return view('user.kelembagaan.bpd');
-    });
-
-    Route::get('/lpmd', function () {
-        return view('user.kelembagaan.lpmd');
-    });
+    Route::get('/pemerintah-desa', [HomeController::class, 'showVillageGovernment']);
+    Route::get('/bpd', [HomeController::class, 'showBPD']);
+    Route::get('/lpmd', [HomeController::class, 'showLPMD']);
 
     Route::get('/pkk', function () {
         return view('user.kelembagaan.pkk');
     });
 
-    Route::get('/karang-taruna', function () {
-        return view('user.kelembagaan.karang-taruna');
-    });
+    Route::get('/karang-taruna', [HomeController::class, 'showKarangTaruna']);
 });
 
 Route::get('/peta-desa', function () {
@@ -87,6 +78,7 @@ Route::get('/login', [AuthController::class, 'loginPage']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'registerPage']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::get('/activate/{id}', [AuthController::class, 'activate']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 
@@ -106,8 +98,8 @@ Route::post('/bpds/custom-sortable', [BPDController::class, 'updateOrder']);
 Route::resource('/dashboard/lpmds', LPMDController::class);
 Route::post('/lpmds/custom-sortable', [LPMDController::class, 'updateOrder']);
 
-// Route::resource('/dashboard/pkks', PKKController::class);
-// Route::post('/pkks/custom-sortable', [PKKController::class, 'updateOrder']);
+Route::resource('/dashboard/pkks', PKKController::class);
+Route::post('/pkks/custom-sortable', [PKKController::class, 'updateOrder']);
 
 Route::resource('/dashboard/karang-tarunas', KarangTarunaController::class);
 Route::post('/karang-tarunas/custom-sortable', [KarangTarunaController::class, 'updateOrder']);

@@ -2,21 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BPD;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\KarangTaruna;
+use App\Models\LPMD;
 use App\Models\PostImage;
 use App\Models\User;
+use App\Models\VillageGovernment;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    /**
+     * Display the home page.
+     *
+     * If a search query is provided, it retrieves posts that have a title containing the search query.
+     * Otherwise, it retrieves the latest posts.
+     * It also strips HTML tags from the content of each post.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
-        if(request('search')){
+        if (request('search')) {
             $posts = Post::where('judul', 'like', '%' . request('search') . '%')->latest()->paginate(10);
             $title = 'Hasil Pencarian: ' . request('search');
-        }
-        else{
+        } else {
             $posts = Post::latest()->paginate(10);
             $title = 'Berita Terbaru';
         }
@@ -25,7 +37,7 @@ class HomeController extends Controller
             $post->konten = strip_tags($post->konten);
         }
 
-        $distinctYears = $this->getDistinctYears($posts);
+        $distinctYears = $this->getDistinctYears();
         $distinctCategories = $this->getDistinctCategories();
 
         return view('user.index', [
@@ -36,17 +48,23 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Display the detail of a post.
+     *
+     * @param  Post  $post
+     * @return \Illuminate\View\View
+     */
     public function detailPost(Post $post)
     {
         $post->post_date = $post->created_at->format('d F Y');
         $posts = Post::latest()->take(6)->get();
-
-        $uniqueMonthYears = $posts->map(function ($post) {
-            return $post->created_at->format('F Y');
+        $allPosts = Post::latest()->get('created_at');
+        $uniqueMonthYears = $allPosts->map(function ($allPosts) {
+            return $allPosts->created_at->format('F Y');
         })->unique();
 
         $post_images = PostImage::where('post_id', $post->id)->get();
-
+        // dd($uniqueMonthYears);
         return view('user.detail-post', [
             'title' => 'Detail Berita',
             'post' => $post,
@@ -57,6 +75,12 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Display posts by author.
+     *
+     * @param  string  $author_name
+     * @return \Illuminate\View\View
+     */
     public function showByAuthor($author_name)
     {
         $user = User::where('name', $author_name)->first();
@@ -77,6 +101,12 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Display posts by category.
+     *
+     * @param  string  $category_name
+     * @return \Illuminate\View\View
+     */
     public function showByCategory($category_name)
     {
         $category = Category::where('nama', $category_name)->first();
@@ -89,7 +119,6 @@ class HomeController extends Controller
         $distinctYears = $this->getDistinctYears($posts);
         $distinctCategories = $this->getDistinctCategories();
 
-
         return view('user.index', [
             'title' => 'Berita Berdasarkan Kategori: ' . $category->nama,
             'posts' => $posts,
@@ -98,9 +127,14 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Display the posts created in a specific year.
+     *
+     * @param int $year The year to filter the posts by.
+     * @return \Illuminate\View\View The view displaying the posts.
+     */
     public function showByYear($year)
     {
-
         $posts = Post::whereYear('created_at', $year)->latest()->paginate(10);
 
         foreach ($posts as $post) {
@@ -110,7 +144,6 @@ class HomeController extends Controller
         $distinctYears = $this->getDistinctYears($posts);
         $distinctCategories = $this->getDistinctCategories();
 
-
         return view('user.index', [
             'title' => 'Berita Tahun: ' . $year,
             'posts' => $posts,
@@ -119,13 +152,24 @@ class HomeController extends Controller
         ]);
     }
 
-    public function getDistinctYears($posts)
+    /**
+     * Get distinct years from the posts.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getDistinctYears()
     {
+        $posts = Post::latest()->get();
         return $posts->map(function ($post) {
             return $post->created_at->format('Y');
         })->unique();
     }
 
+    /**
+     * Get distinct categories from the posts.
+     *
+     * @return \Illuminate\Support\Collection
+     */
     public function getDistinctCategories()
     {
         $posts = Post::latest()->get();
@@ -133,5 +177,50 @@ class HomeController extends Controller
         return $posts->map(function ($post) {
             return $post->category->nama;
         })->unique();
+    }
+
+    /**
+     * Display the village government page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function showVillageGovernment()
+    {
+        $village_governments = VillageGovernment::orderBy('order')->get();
+
+        return view('user.kelembagaan.pemerintah-desa', [
+            'title' => 'Pemerintah Desa',
+            'village_governments' => $village_governments,
+        ]);
+    }
+
+    public function showBPD()
+    {
+        $bpds = BPD::orderBy('order')->get();
+
+        return view('user.kelembagaan.bpd', [
+            'title' => 'BPD',
+            'bpds' => $bpds,
+        ]);
+    }
+
+    public function showLPMD()
+    {
+        $lpmds = LPMD::orderBy('order')->get();
+
+        return view('user.kelembagaan.lpmd', [
+            'title' => 'LPMD',
+            'lpmds' => $lpmds,
+        ]);
+    }
+
+    public function showKarangTaruna()
+    {
+        $karang_tarunas = KarangTaruna::orderBy('order')->get();
+
+        return view('user.kelembagaan.karang-taruna', [
+            'title' => 'Karang Taruna',
+            'karang_tarunas' => $karang_tarunas,
+        ]);
     }
 }

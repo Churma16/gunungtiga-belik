@@ -82,86 +82,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">1.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Ahmad Mukhtarudin</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Ketua BPD</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">27 November 2024</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">2.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Rokhmani</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Wakil Ketua BPD</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">27 November 2024</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">3.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Kamso</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Sekretaris BPD</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">27 November 2024</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">4.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Khaerun</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Anggota BPD</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">27 November 20240</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex px-2 ms-2">
-                                                <h6 class="mb-0 text-xs">5.</h6>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Yuliatun</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">Anggota BPD</p>
-                                        </td>
-                                        <td>
-                                            <p class="text-xs font-weight-normal mb-0">27 November 2024</p>
-                                        </td>
-                                    </tr>
+                                    @foreach ($bpds as $bpd)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 ms-2">
+                                                    <h6 class="mb-0 text-xs">{{ $loop->iteration }}</h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">{{ $bpd->nama }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">{{ $bpd->jabatan }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="text-xs font-weight-normal mb-0">{{ $bpd->formatted_purna_tugas }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
