@@ -88,7 +88,7 @@
                             <div class="card-body">
                                 <div class="d-flex border-top border-bottom py-1" style="gap: 8px">
                                     <small><i class="fas fa-clock"></i>
-                                        {{ $post->post_date }}</small>
+                                        <a href="">{{ $post->post_date }}</a></small>
                                     <small><i class="fas fa-user"></i> <a
                                             href="/author/{{ $post->user->name }}">{{ $post->user->name }}</a></small>
                                     <small><i class="fas fa-folder-open"></i>
@@ -99,9 +99,23 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row justify-content-between mt-5 w-100 ">
+                        <div class="card d-flex flex-column col-md-4 col-sm-12 align-items-start p-3">
+                            <a href="/detail-post/{{ $previousPost->slug }}">
+                                <strong class="">PREVIOUS</strong>
+                                <small class="d-block">{{ $previousPost->judul }}</small>
+                            </a>
+                        </div>
+                        <div class="card col-md-4 col-sm-12  p-3">
+                            <a class="d-flex flex-column align-items-end" href="/detail-post/{{ $nextPost->slug }}">
+                                <strong class="">NEXT</strong>
+                                <small class="text-end">{{ $nextPost->judul }}</small>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </section>
-            <section class="px-3 col-md-4">
+            <sidenav class="px-3 col-md-4">
                 <div class="container">
                     <div class="row">
                         <div class="input-group input-group-outline mb-5 mt-5">
@@ -117,14 +131,20 @@
                                 style="text-decoration: none;"class="text-sm opacity-10 mb-0 border-bottom mb-2 mx-n3"><b>{{ $post->judul }}</b></a>
                         @endforeach
                         <section class="py-2 px-3 mb-3 rounded position-relative bg-gradient-dark mx-n3 mt-3">
-                            <h5 class="text-white z-index-1 position-relative">Arsip Per Tahun</h5>
+                            <h5 class="text-white z-index-1 position-relative">Arsip Per Bulan</h5>
                         </section>
                         @foreach ($uniqueMonthYears as $uniqueMonthYear)
-                            <b class="text-sm opacity-10 mb-0 border-bottom mb-2 mx-n3">{{ $uniqueMonthYear }}</b>
+                            @php
+                                $monthYear = explode(' ', $uniqueMonthYear);
+                            @endphp
+                            <b class="text-sm opacity-10 mb-0 border-bottom mb-2 mx-n3"><a
+                                    href="/year/{{ $monthYear[1] }}/{{ $monthYear[0] }}">
+                                    {{ $uniqueMonthYear }}
+                                </a></b>
                         @endforeach
                     </div>
                 </div>
-            </section>
+            </sidenav>
         </div>
         <!-- END Blogs w/ 4 cards w/ image & text & link -->
     </div>

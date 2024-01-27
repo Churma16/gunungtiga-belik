@@ -23,6 +23,7 @@ class CategoryController extends Controller
             $category->jumlah = Post::where('category_id', $category->id)->count();
         }
         return view('admin.categories.index', [
+            'title' => 'Kategori',
             'categories' => $categories
         ]);
     }

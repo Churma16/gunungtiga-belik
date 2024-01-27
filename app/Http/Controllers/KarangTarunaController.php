@@ -17,6 +17,7 @@ class KarangTarunaController extends Controller
         $karangTarunas = KarangTaruna::orderBy('order')->get();
 
         return view('admin.karang-taruna.index', [
+            'title' => 'Karang Taruna',
             'karangTarunas' => $karangTarunas
         ]);
     }

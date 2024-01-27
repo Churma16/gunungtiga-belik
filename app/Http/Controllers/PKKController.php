@@ -17,6 +17,7 @@ class PKKController extends Controller
         $pkks = PKK::orderBy('order')->get();
 
         return view('admin.pkk.index', [
+            'title' => 'PKK',
             'pkks' => $pkks
         ]);
     }
@@ -38,7 +39,7 @@ class PKKController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required',
             'jabatan' => 'required',
-            'purna_tugas' => 'date',
+            'purna_tugas' => 'nullable|date',
         ]);
 
 
@@ -75,7 +76,7 @@ class PKKController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required',
             'jabatan' => 'required',
-            'purna_tugas' => 'date',
+            'purna_tugas' => 'nullable|date',
         ]);
         // dd($pkk);
 

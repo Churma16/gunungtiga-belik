@@ -28,12 +28,10 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/category/{category:nama}', [HomeController::class, 'showByCategory']);
 Route::get('/author/{user:name}', [HomeController::class, 'showByAuthor']);
 Route::get('/year/{year}', [HomeController::class, 'showByYear']);
+Route::get('/year/{year}/{month}', [HomeController::class, 'showByMonth']);
 Route::get('/detail-post/{post:slug}', [HomeController::class, 'detailPost']);
 
 
-Route::get('/test', function () {
-    return view('user.about-us');
-});
 
 Route::prefix('profil-desa')->group(function () {
     Route::get('/sejarah-desa', function () {
@@ -54,11 +52,7 @@ Route::prefix('kelembagaan')->group(function () {
     Route::get('/pemerintah-desa', [HomeController::class, 'showVillageGovernment']);
     Route::get('/bpd', [HomeController::class, 'showBPD']);
     Route::get('/lpmd', [HomeController::class, 'showLPMD']);
-
-    Route::get('/pkk', function () {
-        return view('user.kelembagaan.pkk');
-    });
-
+    Route::get('/pkk', [HomeController::class, 'showPKK']);
     Route::get('/karang-taruna', [HomeController::class, 'showKarangTaruna']);
 });
 

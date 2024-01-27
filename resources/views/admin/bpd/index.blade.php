@@ -123,7 +123,7 @@
                                                             @method('put')
                                                             <div class="modal-body">
                                                                 <div>
-                                                                    <strong>Nama</strong>
+                                                                    <strong class="required">Nama</strong>
                                                                     <div class="input-group input-group-outline ">
                                                                         <input type="text" name="nama" id="nama"
                                                                             class="form-control p-2 @error('nama') is-invalid @enderror"
@@ -136,7 +136,7 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div class="mt-3">
-                                                                    <strong>Jabatan</strong>
+                                                                    <strong class="required">Jabatan</strong>
                                                                     <div class="input-group input-group-outline ">
                                                                         <select class="form-control" name="jabatan"
                                                                             required>
@@ -144,7 +144,7 @@
                                                                                 Jabatan</option>
                                                                             <option value="Ketua BPD"
                                                                                 @if ($bpd->jabatan == 'Ketua BPD') selected @endif>
-                                                                                Ketua BPD</option>
+                                                                               Ketua BPD</option>
                                                                             <option value="Wakil Ketua BPD"
                                                                                 @if ($bpd->jabatan == 'Wakil Ketua BPD') selected @endif>
                                                                                 Wakil Ketua BPD
@@ -167,7 +167,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="mt-3">
-                                                                    <strong>Purna Tugas</strong>
+                                                                    <strong class="required">Purna Tugas</strong>
                                                                     <div class="input-group input-group-outline ">
                                                                         <input type="date" name="purna_tugas"
                                                                             id="purna_tugas"
@@ -219,7 +219,7 @@
                     @csrf
                     <div class="modal-body">
                         <div class="">
-                            <strong>Nama</strong>
+                            <strong class="required">Nama</strong>
                             <div class="input-group input-group-outline ">
                                 <input type="text" name="nama" id="nama"
                                     class="form-control p-2 @error('nama') is-invalid @enderror"
@@ -230,7 +230,7 @@
                             @enderror
                         </div>
                         <div class="mt-2">
-                            <strong>jabatan</strong>
+                            <strong class="required">jabatan</strong>
                             <div class="input-group input-group-outline ">
                                 <select class="form-control" name="jabatan" required>
                                     <option class="opacity-5" value="">Pilih
@@ -254,7 +254,7 @@
                                 @enderror
                             </div>
                             <div class="mt-2">
-                                <strong>Purna Tugas</strong>
+                                <strong class="required">Purna Tugas</strong>
                                 <div class="input-group input-group-outline">
                                     <input type="date" name="purna_tugas" id="purna_tugas"
                                         class="form-control p-2 @error('purna_tugas') is-invalid @enderror"

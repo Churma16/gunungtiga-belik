@@ -17,6 +17,7 @@ class BPDController extends Controller
         $bpds = BPD::orderBy('order')->get();
 
         return view('admin.bpd.index', [
+            'title' => 'BPD',
             'bpds' => $bpds
         ]);
     }

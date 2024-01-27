@@ -28,6 +28,7 @@ class PostController extends Controller
         }
 
         return view('admin.posts.index', [
+            'title' => 'Postingan',
             'posts' => $posts,
         ]);
     }
@@ -39,6 +40,7 @@ class PostController extends Controller
     {
         $categories = Category::orderBy('nama')->get();
         return view('admin.posts.create', [
+            'title' => 'Buat Postingan',
             // 'posts' => $posts
             'categories' => $categories,
         ]);
@@ -118,6 +120,7 @@ class PostController extends Controller
 
 
         return view('admin.posts.show', [
+            'title' => 'Detail Postingan',
             'post' => $post,
         ]);
     }
@@ -129,6 +132,7 @@ class PostController extends Controller
     {
         $categories = Category::orderBy('nama')->get();
         return view('admin.posts.edit', [
+            'title' => 'Edit Postingan',
             'post' => $post,
             'categories' => $categories,
         ]);

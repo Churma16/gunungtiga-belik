@@ -17,6 +17,7 @@ class LPMDController extends Controller
         $lpmds = LPMD::orderBy('order')->get();
 
         return view('admin.lpmd.index', [
+            'title' => 'LPMD',
             'lpmds' => $lpmds
         ]);
     }

@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\BPD;
-use App\Models\Post;
-use App\Models\Category;
-use App\Models\KarangTaruna;
+use App\Models\PKK;
 use App\Models\LPMD;
-use App\Models\PostImage;
+use App\Models\Post;
 use App\Models\User;
-use App\Models\VillageGovernment;
+use App\Models\Category;
+use App\Models\PostImage;
+use App\Models\KarangTaruna;
 use Illuminate\Http\Request;
+use App\Models\VillageGovernment;
 
 class HomeController extends Controller
 {
@@ -64,6 +66,11 @@ class HomeController extends Controller
         })->unique();
 
         $post_images = PostImage::where('post_id', $post->id)->get();
+
+        // Retrieve the previous and next posts
+        $previousPost = Post::where('id', '<', $post->id)->orderBy('id', 'desc')->first();
+        $nextPost = Post::where('id', '>', $post->id)->orderBy('id')->first();
+
         // dd($uniqueMonthYears);
         return view('user.detail-post', [
             'title' => 'Detail Berita',
@@ -71,6 +78,8 @@ class HomeController extends Controller
             'posts' => $posts,
             'uniqueMonthYears' => $uniqueMonthYears,
             'post_images' => $post_images,
+            'previousPost' => $previousPost,
+            'nextPost' => $nextPost,
 
         ]);
     }
@@ -153,6 +162,34 @@ class HomeController extends Controller
     }
 
     /**
+     * Display the posts for a specific month and year.
+     *
+     * @param  int  $year
+     * @param  string  $month
+     * @return \Illuminate\View\View
+     */
+    public function showByMonth($year, $month)
+    {
+        $numericMonth = Carbon::parse($month)->format('m');
+
+        $posts = Post::whereYear('created_at', $year)->whereMonth('created_at', $numericMonth)->latest()->paginate(10);
+
+        foreach ($posts as $post) {
+            $post->konten = strip_tags($post->konten);
+        }
+
+        $distinctYears = $this->getDistinctYears($posts);
+        $distinctCategories = $this->getDistinctCategories();
+
+        return view('user.index', [
+            'title' => 'Berita Bulan: ' . $month . ' ' . $year,
+            'posts' => $posts,
+            'distinctYears' => $distinctYears,
+            'distinctCategories' => $distinctCategories,
+        ]);
+    }
+
+    /**
      * Get distinct years from the posts.
      *
      * @return \Illuminate\Support\Collection
@@ -221,6 +258,21 @@ class HomeController extends Controller
         return view('user.kelembagaan.lpmd', [
             'title' => 'LPMD',
             'lpmds' => $lpmds,
+        ]);
+    }
+
+    /**
+     * Display the PKK page.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
+    public function showPKK()
+    {
+        $pkks = PKK::orderBy('order')->get();
+
+        return view('user.kelembagaan.pkk', [
+            'title' => 'PKK',
+            'pkks' => $pkks,
         ]);
     }
 

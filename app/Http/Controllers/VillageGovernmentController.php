@@ -17,6 +17,7 @@ class VillageGovernmentController extends Controller
         $villageGovernments = VillageGovernment::orderBy('order')->get();
 
         return view('admin.village-governments.index', [
+            'title' => 'Pemerintahan Desa',
             'villageGovernments' => $villageGovernments
         ]);
     }

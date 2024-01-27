@@ -20,6 +20,7 @@ class UserController extends Controller
         }
 
         return view('admin.users.index', [
+            'title' => 'Kelola Admin',
             'users' => $users
         ]);
     }
