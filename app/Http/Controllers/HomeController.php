@@ -194,6 +194,11 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Display the BPD page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showBPD()
     {
         $bpds = BPD::orderBy('order')->get();
@@ -204,6 +209,11 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Display the LPMD page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showLPMD()
     {
         $lpmds = LPMD::orderBy('order')->get();
@@ -214,6 +224,11 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Display the Karang Taruna page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function showKarangTaruna()
     {
         $karang_tarunas = KarangTaruna::orderBy('order')->get();

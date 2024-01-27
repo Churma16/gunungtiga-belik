@@ -7,11 +7,22 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
+    /**
+     * Display the login page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function loginPage()
     {
         return view('auth.login');
     }
 
+    /**
+     * Handle the login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
     public function login(Request $request)
     {
         // dd($request->all());
@@ -40,12 +51,21 @@ class AuthController extends Controller
         }
     }
 
-
+    /**
+     * Display the registration page.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function registerPage()
     {
         return view('auth.register');
     }
 
+    /**
+     * Handle the registration request.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
     public function register()
     {
         $validatedData = request()->validate([
@@ -61,6 +81,12 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
+    /**
+     * Verify the user's email.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
     public function verifyEmail($id)
     {
         $user = User::findOrFail($id);
@@ -70,6 +96,12 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
+    /**
+     * Activate the user's account.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
+     */
     public function activate($id)
     {
         $user = User::findOrFail($id);
@@ -79,6 +111,11 @@ class AuthController extends Controller
         return redirect('dashboard/users');
     }
 
+    /**
+     * Logout the authenticated user.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function logout()
     {
         auth()->logout();
