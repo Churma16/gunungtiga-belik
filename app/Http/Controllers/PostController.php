@@ -60,18 +60,14 @@ class PostController extends Controller
         $validatedData['judul'] = strtoupper($validatedData['judul']);
 
         if ($request->file('gambar')) {
-            // Get the path to the stored image
-            $imagePath = $request->file('gambar')->store('gambar-header');
-
-            // Full path to the stored image
-            $fullImagePath = storage_path('app/public/'.$imagePath);
-
-            // Optimize the image to a maximum file size (1 MB in this example)
-            $maxFileSize = 1024; // in kilobytes (1 MB)
-            $optimizerChain = OptimizerChainFactory::create();
-            $optimizerChain->optimize($fullImagePath, null, $maxFileSize);
-
-            $validatedData['gambar'] = $imagePath;
+            if ($request->hasFile('gambar')) {
+                $file = $request->file('gambar');
+                $extention = $file->getClientOriginalExtension();
+                $filename = 'gambar-header/' . Str::random(15) . '.' . $extention;
+                Storage::makeDirectory('gambar-header/');
+                $file->move(public_path('gambar-header/'), $filename);
+                $validatedData['gambar'] =  $filename;
+            }
         }
 
         $validatedData['user_id'] = Auth()->user()->id;
@@ -81,7 +77,7 @@ class PostController extends Controller
 
         $count = Post::latest()->count();
 
-        $validatedData['slug'] = $baseSlug.'-'.($count + 1);
+        $validatedData['slug'] = $baseSlug . '-' . ($count + 1);
 
         $post = Post::create($validatedData);
 
@@ -94,7 +90,12 @@ class PostController extends Controller
 
             foreach ($request->file('post_gambar') as $gambar_satuan) {
                 if ($gambar_satuan->isValid() && $gambar_satuan->isFile() && in_array($gambar_satuan->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
-                    $gambarPath = $gambar_satuan->store('gambar-post');
+                    $file = $gambar_satuan;
+                    $extention = $file->getClientOriginalExtension();
+                    $filename = 'gambar-post/' . Str::random(15) . '.' . $extention;
+                    Storage::makeDirectory('gambar-post/');
+                    $file->move(public_path('gambar-post/'), $filename);
+                    $gambarPath = $filename;
 
                     PostImage::create([
                         'gambar' => $gambarPath,
@@ -104,7 +105,7 @@ class PostController extends Controller
             }
         }
 
-        session()->flash('success', 'Postingan '.$validatedData['judul'].' Berhasil dibuat');
+        session()->flash('success', 'Postingan ' . $validatedData['judul'] . ' Berhasil dibuat');
 
         // return redirect('/dashboard/posts/'. $validatedData['slug']);
         return redirect('/dashboard/posts/');
@@ -151,22 +152,36 @@ class PostController extends Controller
 
         if ($request->file('gambar')) {
             //jika ada gambar baru ganti gambar lama, maka hapus gambar lama dulu
-            if ($request->gambar) {
-                Storage::delete($post->gambar);
+            // if ($request->gambar) {
+            //     Storage::delete($post->gambar);
+            // }
+            $file = $request->file('gambar');
+            $extention = $file->getClientOriginalExtension();
+            $filename = 'gambar-header/' . Str::random(15) . '.' . $extention;
+            Storage::makeDirectory('gambar-header/');
+            $file->move(public_path('gambar-header/'), $filename);
+            $old_file_path = public_path('gambar-header/') . $post->gambar;
+            if (file_exists($old_file_path)) {
+                unlink($old_file_path);
             }
-            $validatedData['gambar'] = $request->file('gambar')->store('gambar-header');
+            $validatedData['gambar'] = $filename;
         }
 
         $baseSlug = Str::slug($validatedData['judul']);
         $count = Post::latest()->count();
-        $validatedData['slug'] = $baseSlug.'-'.($count + 1);
+        $validatedData['slug'] = $baseSlug . '-' . ($count + 1);
 
         $post->update($validatedData);
 
         if ($request->hasFile('post_gambar')) {
             foreach ($request->file('post_gambar') as $gambar_satuan) {
                 if ($gambar_satuan->isValid() && $gambar_satuan->isFile() && in_array($gambar_satuan->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
-                    $gambarPath = $gambar_satuan->store('gambar-post');
+                    $file = $gambar_satuan;
+                    $extention = $file->getClientOriginalExtension();
+                    $filename = 'gambar-post/' . Str::random(15) . '.' . $extention;
+                    Storage::makeDirectory('gambar-post/');
+                    $file->move(public_path('gambar-post/'), $filename);
+                    $gambarPath = $filename;
 
                     PostImage::create([
                         'gambar' => $gambarPath,
@@ -176,17 +191,19 @@ class PostController extends Controller
             }
         }
 
-        if (! empty($request->gambarDihapus)) {
+        if (!empty($request->gambarDihapus)) {
             foreach ($request->gambarDihapus as $gambarDihapus) {
                 $postImage = PostImage::find($gambarDihapus);
-                Storage::delete($postImage->gambar);
+                if (file_exists($postImage->gambar)) {
+                    unlink($postImage->gambar);
+                }
                 $postImage->delete();
             }
         }
 
-        session()->flash('success', 'Postingan '.$validatedData['judul'].' Berhasil Diubah');
+        session()->flash('success', 'Postingan ' . $validatedData['judul'] . ' Berhasil Diubah');
 
-        return redirect('/dashboard/posts/'.$validatedData['slug']);
+        return redirect('/dashboard/posts/' . $validatedData['slug']);
     }
 
     /**
@@ -194,18 +211,24 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        // dd($post->postImage);
         if ($post->gambar) {
-            Storage::delete($post->gambar);
+            if (file_exists($post->gambar)) {
+                unlink($post->gambar);
+            }
         }
 
-        if ($post->post_images) {
-            foreach ($post->post_images as $post_image) {
-                Storage::delete($post_image->gambar);
+        if ($post->postImage) {
+            foreach ($post->postImage as $post_image) {
+                if (file_exists($post_image->gambar)) {
+                    unlink($post_image->gambar);
+                    $post_image->delete();
+                }
             }
         }
         Post::destroy($post->id);
 
-        session()->flash('success', 'Postingan '.$post->judul.' Berhasil Dihapus');
+        session()->flash('success', 'Postingan ' . $post->judul . ' Berhasil Dihapus');
 
         return redirect('/dashboard/posts');
     }
