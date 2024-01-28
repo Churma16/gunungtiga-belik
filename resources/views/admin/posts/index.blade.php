@@ -1,6 +1,21 @@
 {{-- @dd((empty($posts))) --}}
 @extends('admin.layouts.main')
 
+@section('styles')
+    <style>
+        table.dataTable,
+        table.dataTable th,
+        table.dataTable td {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .dataTables_wrapper .dataTables_info,
+        .dataTables_wrapper .dataTables_paginate {
+            font-size: small;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="container-fluid py-4">
         <div class="row">
@@ -19,7 +34,7 @@
                     </div>
                     <div class="card-body px-0 pb-2">
                         <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0">
+                            <table class="table align-items-center mb-0" id="myTable">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-10"
@@ -50,7 +65,6 @@
                                             class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-10">
                                             Aksi
                                         </th>
-                                        <th class="text-secondary opacity-10"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -74,11 +88,19 @@
                                                         alt="user1" width="100%" />
                                                 </td>
                                                 <td class="align-middle">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $post->judul }}</span>
+                                                    @if (strlen($post->judul) > 20)
+                                                        <span class="text-secondary text-xs font-weight-bold"
+                                                            style="text-align: justify">
+                                                            {!! wordwrap($post->judul, 20, '<br>', true) !!}
+                                                        </span>
+                                                    @else
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold">{{ $post->judul }}</span>
+                                                    @endif
                                                 </td>
                                                 <td class="align-middle text-center">
-                                                    <span class="text-secondary text-xs ">{{ $post->post_date }}</span>
+                                                    <span class="text-secondary text-xs"
+                                                        data-order="{{ $post->created_at }}">{{ $post->post_date }}</span>
                                                 </td>
                                                 <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs ">{{ $post->category->nama }}</span>
@@ -124,6 +146,21 @@
 @endsection
 
 @section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                search: {
+                    "columns": [2]
+                },
+                paging: true,
+                columnDefs: [{
+                    "orderable": false,
+                    "targets": [1, 6]
+                }]
+            });
+        });
+    </script>
+
     @if (session('success'))
         <script>
             Swal.fire({

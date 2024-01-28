@@ -60,7 +60,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.2.1/compressor.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
-
+    <!-- Add this to the head of your HTML file -->
+    <script src="https://cdn.jsdelivr.net/npm/image-compressor@2.0.3/dist/image-compressor.min.js"></script>
 
     @yield('styles')
 
@@ -78,7 +79,7 @@
         @include('admin.layouts.partials.footer')
     </main>
 
-    @include('admin.layouts.partials.plugin')
+    {{-- @include('admin.layouts.partials.plugin') --}}
 
     <!--   Core JS Files   -->
     <script src="/assets/js/core/popper.min.js"></script>

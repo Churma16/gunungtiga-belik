@@ -294,4 +294,7 @@
 
 @endsection
 
+@section('scripts')
+
+@endsection
 </html>

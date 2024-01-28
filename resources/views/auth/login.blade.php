@@ -58,6 +58,16 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                @if (session('errors') && session('errors')->has('email'))
+                                    <div class="alert alert-danger text-white text-center" role="alert">
+                                        {{ session('errors')->first('email') }}
+                                    </div>
+                                @endif
+                                @if (session('success'))
+                                    <div class="alert alert-info text-white text-center" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
                                 <form role="form" class="text-start" method="POST" action="/login">
                                     @csrf
                                     <div class="input-group input-group-outline my-3">

@@ -97,7 +97,8 @@
                 </h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="/dashboard/profile">
+                <a class="nav-link text-white {{ Request::is('dashboard/users*') ? 'active  bg-gradient-primary' : '' }}"
+                    href="/dashboard/users">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">key</i>
                     </div>
@@ -105,7 +106,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white " href="/pages/profile.html">
+                <a class="nav-link text-white {{ Request::is('dashboard/profile*') ? 'active  bg-gradient-primary' : '' }}"
+                    href="/dashboard/profile">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">person</i>
                     </div>

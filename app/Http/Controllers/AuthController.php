@@ -20,6 +20,7 @@ class AuthController extends Controller
     /**
      * Handle the login request.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function login(Request $request)
@@ -40,13 +41,13 @@ class AuthController extends Controller
             } else {
                 // Authentication failed
                 return back()->withErrors([
-                    'email' => 'The provided credentials do not match our records.',
+                    'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
                 ]);
             }
         } else {
             // User doesn't exist or email is not verified
             return back()->withErrors([
-                'email' => 'The provided email is not verified or does not exist.',
+                'email' => 'Email yang dimasukkan belum diverifikasi atau tidak ada.',
             ]);
         }
     }
@@ -78,7 +79,7 @@ class AuthController extends Controller
 
         User::create($validatedData);
 
-        return redirect('/login');
+        return redirect('/login')->with('success', 'Hubungi admin untuk verifikasi email.');
     }
 
     /**
@@ -111,6 +112,11 @@ class AuthController extends Controller
         return redirect('dashboard/users');
     }
 
+    /**
+     * Change the user's password.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changePassword()
     {
         request()->validate([
@@ -123,8 +129,7 @@ class AuthController extends Controller
 
         session()->flash('success', 'Password berhasil diperbarui');
 
-        return redirect()->back()
-
+        return redirect()->back();
     }
 
     /**

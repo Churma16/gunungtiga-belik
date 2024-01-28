@@ -19,7 +19,7 @@
                         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white text-capitalize ps-3">
-                                    Buat Postingan
+                                    {{ $title }}
                                 </h6>
                             </div>
                         </div>
@@ -57,12 +57,12 @@
                             @csrf <div class="card-body px-4 pb-2">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-6">
-                                        <h5 class="required">Password Lama</h5>
+                                        <h5 class="required">Password Baru</h5>
                                         <div class="input-group input-group-outline ">
-                                            <input type="password" class="form-control" name="newPassword"
-                                                placeholder="Masukan Username..." value="" required>
+                                            <input type="password" class="form-control" name="password"
+                                                placeholder="Masukan Password Baru..." value="" required>
                                         </div>
-                                        @error('newPassword')
+                                        @error('password')
                                             <small class="text-danger mb-3">
                                                 {{ $message }}
                                             </small>
@@ -72,7 +72,7 @@
                                         <h5 class="required">Konfirmasi Password</h5>
                                         <div class="input-group input-group-outline ">
                                             <input type="password" class="form-control" name="password_confirmation"
-                                                placeholder="Masukan Password Baru..." value="" required>
+                                                placeholder="Masukan Kembali Password Baru..." value="" required>
                                         </div>
                                         @error('password_confirmation')
                                             <small class="text-danger mb-3">

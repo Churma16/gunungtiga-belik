@@ -144,7 +144,7 @@
                                                                                 Jabatan</option>
                                                                             <option value="Ketua BPD"
                                                                                 @if ($bpd->jabatan == 'Ketua BPD') selected @endif>
-                                                                               Ketua BPD</option>
+                                                                                Ketua BPD</option>
                                                                             <option value="Wakil Ketua BPD"
                                                                                 @if ($bpd->jabatan == 'Wakil Ketua BPD') selected @endif>
                                                                                 Wakil Ketua BPD
