@@ -120,7 +120,6 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.0.7/compressor.min.js"></script>
     <script>
         function compressAndPreviewImage() {
             const imageInput = document.getElementById('gambar_header');
@@ -129,29 +128,12 @@
             const file = imageInput.files[0];
 
             if (file) {
-                // Compress the image using Compressor.js
-                new Compressor(file, {
-                    quality: 0.5, // Adjust quality as needed (0-1)
-                    success(result) {
-                        // Preview the compressed image
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            previewImage.src = e.target.result;
-                            previewImage.style.display = 'block';
-                        };
-                        reader.readAsDataURL(result);
-
-                        // Replace the original file input with the compressed image
-                        const compressedFile = new File([result], file.name, {
-                            type: file.type
-                        });
-                        imageInput.files = [compressedFile];
-                    },
-                    error(err) {
-                        console.error('Compression failed:', err);
-                        // Handle compression errors here
-                    }
-                });
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
             }
         }
     </script>
