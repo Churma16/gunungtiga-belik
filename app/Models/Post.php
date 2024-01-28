@@ -9,17 +9,20 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded=['id'];
+    protected $guarded = ['id'];
 
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function postImage(){
+    public function postImage()
+    {
         return $this->hasMany(PostImage::class);
     }
 
@@ -27,7 +30,6 @@ class Post extends Model
     {
         return 'slug';
     }
-
 
     public function getPostFormatDateAttribute()
     {
@@ -37,6 +39,7 @@ class Post extends Model
     public function getPostExcerptAttribute()
     {
         $excerpt = implode(' ', array_slice(str_word_count($this->konten, 1), 0, 100));
+
         return $excerpt;
     }
 }

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\VillageGovernment;
-use App\Http\Requests\StoreVillageGovernmentRequest;
-use App\Http\Requests\UpdateVillageGovernmentRequest;
 use Illuminate\Http\Request;
 
 class VillageGovernmentController extends Controller
@@ -18,7 +16,7 @@ class VillageGovernmentController extends Controller
 
         return view('admin.village-governments.index', [
             'title' => 'Pemerintahan Desa',
-            'villageGovernments' => $villageGovernments
+            'villageGovernments' => $villageGovernments,
         ]);
     }
 
@@ -42,12 +40,12 @@ class VillageGovernmentController extends Controller
             'purna_tugas' => 'required|date',
         ]);
 
-
         $validatedData['order'] = VillageGovernment::count() + 1;
 
-        $villageGovernment=VillageGovernment::create($validatedData);
+        $villageGovernment = VillageGovernment::create($validatedData);
 
-        session()->flash('success', 'Data ' . $villageGovernment['nama'] . ' Berhasil Dihapus');
+        session()->flash('success', 'Data '.$villageGovernment['nama'].' Berhasil Dihapus');
+
         return redirect('/dashboard/village-governments');
     }
 
@@ -81,7 +79,8 @@ class VillageGovernmentController extends Controller
 
         $villageGovernment->update($validatedData);
 
-        session()->flash('success', 'Data ' . $villageGovernment['nama'] . ' Berhasil Diubah');
+        session()->flash('success', 'Data '.$villageGovernment['nama'].' Berhasil Diubah');
+
         return redirect('/dashboard/village-governments');
     }
 
@@ -92,7 +91,8 @@ class VillageGovernmentController extends Controller
     {
         $villageGovernment->delete();
 
-        session()->flash('success', 'Data ' . $villageGovernment['nama'] . ' Berhasil Dihapus');
+        session()->flash('success', 'Data '.$villageGovernment['nama'].' Berhasil Dihapus');
+
         return redirect('/dashboard/village-governments');
     }
 

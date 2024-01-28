@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\BPD;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreBPDRequest;
-use App\Http\Requests\UpdateBPDRequest;
 
 class BPDController extends Controller
 {
@@ -18,7 +16,7 @@ class BPDController extends Controller
 
         return view('admin.bpd.index', [
             'title' => 'BPD',
-            'bpds' => $bpds
+            'bpds' => $bpds,
         ]);
     }
 
@@ -42,12 +40,12 @@ class BPDController extends Controller
             'purna_tugas' => 'required|date',
         ]);
 
-
         $validatedData['order'] = BPD::count() + 1;
 
-        $bpd=BPD::create($validatedData);
+        $bpd = BPD::create($validatedData);
 
-        session()->flash('success', 'Data ' . $bpd['nama'] . ' Berhasil Ditambahkan');
+        session()->flash('success', 'Data '.$bpd['nama'].' Berhasil Ditambahkan');
+
         return redirect('/dashboard/bpds');
     }
 
@@ -80,10 +78,10 @@ class BPDController extends Controller
         ]);
         // dd($bpd);
 
-
         $bpd->update($validatedData);
 
-        session()->flash('success', 'Data ' . $bpd['nama'] . ' Berhasil Diubah');
+        session()->flash('success', 'Data '.$bpd['nama'].' Berhasil Diubah');
+
         return redirect('/dashboard/bpds');
     }
 
@@ -94,7 +92,8 @@ class BPDController extends Controller
     {
         $bpd->delete();
 
-        session()->flash('success', 'Data ' . $bpd['nama'] . ' Berhasil Dihapus');
+        session()->flash('success', 'Data '.$bpd['nama'].' Berhasil Dihapus');
+
         return redirect('/dashboard/bpds');
     }
 

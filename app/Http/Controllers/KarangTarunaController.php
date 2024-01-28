@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\KarangTaruna;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreKarangTarunaRequest;
-use App\Http\Requests\UpdateKarangTarunaRequest;
 
 class KarangTarunaController extends Controller
 {
@@ -18,7 +16,7 @@ class KarangTarunaController extends Controller
 
         return view('admin.karang-taruna.index', [
             'title' => 'Karang Taruna',
-            'karangTarunas' => $karangTarunas
+            'karangTarunas' => $karangTarunas,
         ]);
     }
 
@@ -42,12 +40,12 @@ class KarangTarunaController extends Controller
             'purna_tugas' => 'required|date',
         ]);
 
-
         $validatedData['order'] = KarangTaruna::count() + 1;
 
-        $karangTaruna=KarangTaruna::create($validatedData);
+        $karangTaruna = KarangTaruna::create($validatedData);
 
-        session()->flash('success', 'Data ' . $karangTaruna['nama'] . ' Berhasil Ditambahkan');
+        session()->flash('success', 'Data '.$karangTaruna['nama'].' Berhasil Ditambahkan');
+
         return redirect('/dashboard/karang-tarunas');
     }
 
@@ -80,10 +78,10 @@ class KarangTarunaController extends Controller
         ]);
         // dd($karangTaruna);
 
-
         $karangTaruna->update($validatedData);
 
-        session()->flash('success', 'Data ' . $karangTaruna['nama'] . ' Berhasil Diubah');
+        session()->flash('success', 'Data '.$karangTaruna['nama'].' Berhasil Diubah');
+
         return redirect('/dashboard/karang-tarunas');
     }
 
@@ -94,7 +92,8 @@ class KarangTarunaController extends Controller
     {
         $karangTaruna->delete();
 
-        session()->flash('success', 'Data ' . $karangTaruna['nama'] . ' Berhasil Dihapus');
+        session()->flash('success', 'Data '.$karangTaruna['nama'].' Berhasil Dihapus');
+
         return redirect('/dashboard/karang-tarunas');
     }
 

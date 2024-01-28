@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class BPD
- * @package App\Models
  *
  * @property int $id
  * @property string $purna_tugas
@@ -28,5 +27,4 @@ class BPD extends Model
     {
         return date('d F Y', strtotime($this->attributes['purna_tugas']));
     }
-
 }

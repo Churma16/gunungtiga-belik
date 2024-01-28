@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PostImage;
 use App\Http\Requests\StorePostImageRequest;
 use App\Http\Requests\UpdatePostImageRequest;
+use App\Models\PostImage;
 
 class PostImageController extends Controller
 {

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\LPMD;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreLPMDRequest;
-use App\Http\Requests\UpdateLPMDRequest;
 
 class LPMDController extends Controller
 {
@@ -18,7 +16,7 @@ class LPMDController extends Controller
 
         return view('admin.lpmd.index', [
             'title' => 'LPMD',
-            'lpmds' => $lpmds
+            'lpmds' => $lpmds,
         ]);
     }
 
@@ -42,12 +40,12 @@ class LPMDController extends Controller
             'purna_tugas' => 'required|date',
         ]);
 
-
         $validatedData['order'] = LPMD::count() + 1;
 
-        $lpmd= LPMD::create($validatedData);
+        $lpmd = LPMD::create($validatedData);
 
-        session()->flash('success', 'Data ' . $lpmd['nama'] . ' Berhasil Ditambahkan');
+        session()->flash('success', 'Data '.$lpmd['nama'].' Berhasil Ditambahkan');
+
         return redirect('/dashboard/lpmds');
     }
 
@@ -80,9 +78,8 @@ class LPMDController extends Controller
         ]);
         // dd($lpmd);
 
-
         $lpmd->update($validatedData);
-        session()->flash('success', 'Data ' . $lpmd['nama'] . ' Berhasil Diubah');
+        session()->flash('success', 'Data '.$lpmd['nama'].' Berhasil Diubah');
 
         return redirect('/dashboard/lpmds');
     }
@@ -94,7 +91,8 @@ class LPMDController extends Controller
     {
         $lpmd->delete();
 
-        session()->flash('success', 'Data ' . $lpmd['nama'] . ' Berhasil Dihapus');
+        session()->flash('success', 'Data '.$lpmd['nama'].' Berhasil Dihapus');
+
         return redirect('/dashboard/lpmds');
     }
 

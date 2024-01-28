@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -22,9 +20,10 @@ class CategoryController extends Controller
         foreach ($categories as $category) {
             $category->jumlah = Post::where('category_id', $category->id)->count();
         }
+
         return view('admin.categories.index', [
             'title' => 'Kategori',
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 
@@ -41,13 +40,13 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         if (Category::where('nama', $request['nama'])->exists()) {
-            session()->flash('failed', 'Kategori ' . $request['nama'] . ' Gagal Ditambahkan. Nama Kategori Sudah Digunakan.');
+            session()->flash('failed', 'Kategori '.$request['nama'].' Gagal Ditambahkan. Nama Kategori Sudah Digunakan.');
+
             return redirect('/dashboard/categories/');
         }
         $validatedData = $request->validate([
@@ -57,14 +56,14 @@ class CategoryController extends Controller
         $validatedData['nama'] = ucwords(strtolower($validatedData['nama']));
 
         Category::create($validatedData);
-        session()->flash('success', 'Kategori ' . $validatedData['nama'] . ' Berhasil Ditambahkan');
+        session()->flash('success', 'Kategori '.$validatedData['nama'].' Berhasil Ditambahkan');
+
         return redirect('/dashboard/categories');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
@@ -85,7 +84,6 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function edit(Category $category)
@@ -95,14 +93,13 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Category $category)
     {
         if (Category::where('nama', $request['nama'])->exists()) {
-            session()->flash('failed', 'Kategori ' . $category->nama . ' Gagal Diubah Menjadi ' . $request['nama'] . '. Nama Kategori Sudah Digunakan.');
+            session()->flash('failed', 'Kategori '.$category->nama.' Gagal Diubah Menjadi '.$request['nama'].'. Nama Kategori Sudah Digunakan.');
+
             return redirect('categories/');
         }
 
@@ -113,24 +110,26 @@ class CategoryController extends Controller
         $validatedData['nama'] = ucwords(strtolower($validatedData['nama']));
 
         Category::where('id', $category->id)->update($validatedData);
-        session()->flash('success', 'Kategori ' . $validatedData['nama'] . ' Berhasil Diubah');
+        session()->flash('success', 'Kategori '.$validatedData['nama'].' Berhasil Diubah');
+
         return redirect('/dashboard/categories');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function destroy(Category $category)
     {
         if (Post::where('category_id', $category->id)->exists()) {
-            session()->flash('failed', 'Kategori ' . $category->nama . ' Gagal Dihapus. Kategori Masih Digunakan Pada Beberapa Postingan.');
+            session()->flash('failed', 'Kategori '.$category->nama.' Gagal Dihapus. Kategori Masih Digunakan Pada Beberapa Postingan.');
+
             return redirect('/dashboard/categories/');
         }
         Category::destroy($category->id);
-        session()->flash('success', 'Kategori ' . $category->nama . ' Berhasil Dihapus');
+        session()->flash('success', 'Kategori '.$category->nama.' Berhasil Dihapus');
+
         return redirect('/dashboard/categories/');
     }
 }

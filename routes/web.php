@@ -1,17 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BPDController;
-use App\Http\Controllers\PKKController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LPMDController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\BPDController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KarangTarunaController;
+use App\Http\Controllers\LPMDController;
+use App\Http\Controllers\PKKController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VillageGovernmentController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,8 +31,6 @@ Route::get('/year/{year}', [HomeController::class, 'showByYear']);
 Route::get('/year/{year}/{month}', [HomeController::class, 'showByMonth']);
 Route::get('/detail-post/{post:slug}', [HomeController::class, 'detailPost']);
 
-
-
 Route::prefix('profil-desa')->group(function () {
     Route::get('/sejarah-desa', function () {
         return view('user.profil-desa.sejarah-desa');
@@ -46,7 +44,6 @@ Route::prefix('profil-desa')->group(function () {
         return view('user.profil-desa.demografi-desa');
     });
 });
-
 
 Route::prefix('kelembagaan')->group(function () {
     Route::get('/pemerintah-desa', [HomeController::class, 'showVillageGovernment']);
@@ -64,9 +61,6 @@ Route::get('/berita-desa', function () {
     return view('user.berita-desa');
 });
 
-
-
-
 // AUTH
 Route::get('/login', [AuthController::class, 'loginPage']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -74,7 +68,6 @@ Route::get('/register', [AuthController::class, 'registerPage']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/activate/{id}', [AuthController::class, 'activate']);
 Route::get('/logout', [AuthController::class, 'logout']);
-
 
 // ADMIN
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -98,5 +91,7 @@ Route::post('/pkks/custom-sortable', [PKKController::class, 'updateOrder']);
 Route::resource('/dashboard/karang-tarunas', KarangTarunaController::class);
 Route::post('/karang-tarunas/custom-sortable', [KarangTarunaController::class, 'updateOrder']);
 
-
 Route::get('/dashboard/users', [UserController::class, 'index']);
+
+Route::get('/dashboard/profile', [UserController::class, 'profile']);
+Route::post('/dashboard/profile/update-username', [UserController::class, 'updateUsername']);

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\PKK;
 use Illuminate\Http\Request;
-use App\Http\Requests\StorePKKRequest;
-use App\Http\Requests\UpdatePKKRequest;
 
 class PKKController extends Controller
 {
@@ -18,7 +16,7 @@ class PKKController extends Controller
 
         return view('admin.pkk.index', [
             'title' => 'PKK',
-            'pkks' => $pkks
+            'pkks' => $pkks,
         ]);
     }
 
@@ -42,12 +40,12 @@ class PKKController extends Controller
             'purna_tugas' => 'nullable|date',
         ]);
 
-
         $validatedData['order'] = PKK::count() + 1;
 
-        $pkk= PKK::create($validatedData);
+        $pkk = PKK::create($validatedData);
 
-        session()->flash('success', 'Data ' . $pkk['nama'] . ' Berhasil Ditambahkan');
+        session()->flash('success', 'Data '.$pkk['nama'].' Berhasil Ditambahkan');
+
         return redirect('/dashboard/pkks');
     }
 
@@ -80,9 +78,8 @@ class PKKController extends Controller
         ]);
         // dd($pkk);
 
-
         $pkk->update($validatedData);
-        session()->flash('success', 'Data ' . $pkk['nama'] . ' Berhasil Diubah');
+        session()->flash('success', 'Data '.$pkk['nama'].' Berhasil Diubah');
 
         return redirect('/dashboard/pkks');
     }
@@ -94,10 +91,10 @@ class PKKController extends Controller
     {
         $pkk->delete();
 
-        session()->flash('success', 'Data ' . $pkk['nama'] . ' Berhasil Dihapus');
+        session()->flash('success', 'Data '.$pkk['nama'].' Berhasil Dihapus');
+
         return redirect('/dashboard/pkks');
     }
-
 
     /**
      * Update the order of PKK records.

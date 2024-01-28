@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use App\Models\BPD;
-use App\Models\PKK;
-use App\Models\LPMD;
-use App\Models\Post;
-use App\Models\User;
 use App\Models\Category;
-use App\Models\PostImage;
 use App\Models\KarangTaruna;
-use Illuminate\Http\Request;
+use App\Models\LPMD;
+use App\Models\PKK;
+use App\Models\Post;
+use App\Models\PostImage;
+use App\Models\User;
 use App\Models\VillageGovernment;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -28,8 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         if (request('search')) {
-            $posts = Post::where('judul', 'like', '%' . request('search') . '%')->latest()->paginate(10);
-            $title = 'Hasil Pencarian: ' . request('search');
+            $posts = Post::where('judul', 'like', '%'.request('search').'%')->latest()->paginate(10);
+            $title = 'Hasil Pencarian: '.request('search');
         } else {
             $posts = Post::latest()->paginate(10);
             $title = 'Berita Terbaru';
@@ -53,7 +52,6 @@ class HomeController extends Controller
     /**
      * Display the detail of a post.
      *
-     * @param  Post  $post
      * @return \Illuminate\View\View
      */
     public function detailPost(Post $post)
@@ -103,7 +101,7 @@ class HomeController extends Controller
         $distinctCategories = $this->getDistinctCategories();
 
         return view('user.index', [
-            'title' => 'Berita Berdasarkan Penulis: ' . $user->name,
+            'title' => 'Berita Berdasarkan Penulis: '.$user->name,
             'posts' => $posts,
             'distinctYears' => $distinctYears,
             'distinctCategories' => $distinctCategories,
@@ -129,7 +127,7 @@ class HomeController extends Controller
         $distinctCategories = $this->getDistinctCategories();
 
         return view('user.index', [
-            'title' => 'Berita Berdasarkan Kategori: ' . $category->nama,
+            'title' => 'Berita Berdasarkan Kategori: '.$category->nama,
             'posts' => $posts,
             'distinctYears' => $distinctYears,
             'distinctCategories' => $distinctCategories,
@@ -139,7 +137,7 @@ class HomeController extends Controller
     /**
      * Display the posts created in a specific year.
      *
-     * @param int $year The year to filter the posts by.
+     * @param  int  $year  The year to filter the posts by.
      * @return \Illuminate\View\View The view displaying the posts.
      */
     public function showByYear($year)
@@ -154,7 +152,7 @@ class HomeController extends Controller
         $distinctCategories = $this->getDistinctCategories();
 
         return view('user.index', [
-            'title' => 'Berita Tahun: ' . $year,
+            'title' => 'Berita Tahun: '.$year,
             'posts' => $posts,
             'distinctYears' => $distinctYears,
             'distinctCategories' => $distinctCategories,
@@ -182,7 +180,7 @@ class HomeController extends Controller
         $distinctCategories = $this->getDistinctCategories();
 
         return view('user.index', [
-            'title' => 'Berita Bulan: ' . $month . ' ' . $year,
+            'title' => 'Berita Bulan: '.$month.' '.$year,
             'posts' => $posts,
             'distinctYears' => $distinctYears,
             'distinctCategories' => $distinctCategories,
@@ -197,6 +195,7 @@ class HomeController extends Controller
     public function getDistinctYears()
     {
         $posts = Post::latest()->get();
+
         return $posts->map(function ($post) {
             return $post->created_at->format('Y');
         })->unique();
