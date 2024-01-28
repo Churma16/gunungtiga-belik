@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 
 class UserController extends Controller
@@ -21,7 +20,28 @@ class UserController extends Controller
 
         return view('admin.users.index', [
             'title' => 'Kelola Admin',
-            'users' => $users
+            'users' => $users,
         ]);
+    }
+
+    public function profile()
+    {
+        return view('admin.profile.index', [
+            'title' => 'Profil Saya',
+            'user' => auth()->user(),
+        ]);
+    }
+
+    public function updateUsername()
+    {
+        request()->validate([
+            'name' => 'required|unique:users,name,' . auth()->id(),
+        ]);
+
+        auth()->user()->update([
+            'name' => request('name'),
+        ]);
+
+        return redirect()->back()->with('success', 'name berhasil diperbarui');
     }
 }

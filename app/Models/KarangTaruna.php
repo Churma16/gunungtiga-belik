@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class KarangTaruna
- * @package App\Models
  *
  * @property int $id
  * @property string $purna_tugas

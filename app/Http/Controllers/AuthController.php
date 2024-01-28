@@ -20,7 +20,6 @@ class AuthController extends Controller
     /**
      * Handle the login request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
     public function login(Request $request)
@@ -36,6 +35,7 @@ class AuthController extends Controller
             // Attempt authentication
             if (auth()->attempt($credentials)) {
                 $request->session()->regenerate();
+
                 return redirect()->intended('dashboard');
             } else {
                 // Authentication failed
@@ -71,7 +71,7 @@ class AuthController extends Controller
         $validatedData = request()->validate([
             'name' => 'required|unique:users',
             'email' => 'required|email|unique:users',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);
@@ -111,6 +111,22 @@ class AuthController extends Controller
         return redirect('dashboard/users');
     }
 
+    public function changePassword()
+    {
+        request()->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        auth()->user()->update([
+            'password' => bcrypt(request('password')),
+        ]);
+
+        session()->flash('success', 'Password berhasil diperbarui');
+
+        return redirect()->back()
+
+    }
+
     /**
      * Logout the authenticated user.
      *
@@ -119,6 +135,7 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
+
         return view('auth.login');
     }
 }
