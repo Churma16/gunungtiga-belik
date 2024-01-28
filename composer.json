@@ -7,11 +7,12 @@
     "require": {
         "php": "^8.1",
         "enyo/dropzone": "^5.9",
+        "golchha21/resmushit": "^1.2",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^3.3",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8",
-        "spatie/image-optimizer": "^1.7"
+        "laravel/tinker": "^2.8"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

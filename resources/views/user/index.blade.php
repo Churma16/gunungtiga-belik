@@ -99,7 +99,7 @@
                                             <a href="/detail-post/{{ $post->slug }}">
                                                 <div class="p-3 py-auto pe-md-0">
                                                     <img class="border-radius-md shadow-lg"
-                                                        src="{{ asset('storage/' . $post->gambar) }}" alt="image"
+                                                        src="{{ asset($post->gambar) }}" alt="image"
                                                         style="width: 100%;">
                                                 </div>
                                             </a>

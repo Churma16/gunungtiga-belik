@@ -14,7 +14,8 @@
                         </div>
                     </div>
                     <div class="d-flex align-self-start mx-3 pt-3" style="gap: 6px ">
-                        <a class="btn btn-warning" href="/dashboard/posts/{{ $post->slug }}/edit"><i class="fas fa-edit"></i> Edit Postingan</a>
+                        <a class="btn btn-warning" href="/dashboard/posts/{{ $post->slug }}/edit"><i
+                                class="fas fa-edit"></i> Edit Postingan</a>
                         <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
@@ -27,8 +28,8 @@
                             <div class="col-md-10 mx-auto">
                                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                                     <ol class="carousel-indicators">
-                                        <li data-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                                            class="active"></li>
+                                        <li data-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
+                                        </li>
                                         @foreach ($post->postImage as $post_image)
                                             <li data-target="#carouselExampleIndicators"
                                                 data-bs-slide-to="{{ $loop->iteration }}"></li>
@@ -36,24 +37,23 @@
                                     </ol>
                                     <div class="carousel-inner border-radius-lg">
                                         <div class="carousel-item active">
-                                            <img class="d-block w-100" src="{{ asset('storage/' . $post->gambar) }}"
+                                            <img class="d-block w-100" src="{{ asset($post->gambar) }}"
                                                 alt="dokumentasi {{ $post->judul }}">
                                         </div>
                                         @foreach ($post->postImage as $post_image)
                                             <div class="carousel-item">
-                                                <img class="d-block w-100"
-                                                    src="{{ asset('storage/' . $post_image->gambar) }}"
+                                                <img class="d-block w-100" src="{{ asset($post_image->gambar) }}"
                                                     alt="First slide">
                                             </div>
                                         @endforeach
                                     </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleIndicators"
-                                        role="button" data-bs-slide="prev">
+                                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                        data-bs-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Previous</span>
                                     </a>
-                                    <a class="carousel-control-next" href="#carouselExampleIndicators"
-                                        role="button" data-bs-slide="next">
+                                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                        data-bs-slide="next">
                                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                         <span class="sr-only">Next</span>
                                     </a>

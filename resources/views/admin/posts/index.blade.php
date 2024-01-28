@@ -84,7 +84,7 @@
                                                         class="text-secondary  text-xs font-weight-bold ps-4">{{ $loop->iteration }}</span>
                                                 </td>
                                                 <td class="align-middle text-center" style="max-width: 50px">
-                                                    <img src="{{ asset('storage/' . $post->gambar) }}" class="me-3 rounded"
+                                                    <img src="{{ asset($post->gambar) }}" class="me-3 rounded"
                                                         alt="user1" width="100%" />
                                                 </td>
                                                 <td class="align-middle">

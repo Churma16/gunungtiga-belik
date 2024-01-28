@@ -57,13 +57,12 @@
                                             </ol>
                                             <div class="carousel-inner border-radius-lg">
                                                 <div class="carousel-item active">
-                                                    <img class="d-block w-100" src="{{ asset('storage/' . $post->gambar) }}"
+                                                    <img class="d-block w-100" src="{{ asset($post->gambar) }}"
                                                         alt="dokumentasi {{ $post->judul }}">
                                                 </div>
                                                 @foreach ($post_images as $post_image)
                                                     <div class="carousel-item">
-                                                        <img class="d-block w-100"
-                                                            src="{{ asset('storage/' . $post_image->gambar) }}"
+                                                        <img class="d-block w-100" src="{{ asset($post_image->gambar) }}"
                                                             alt="First slide">
                                                     </div>
                                                 @endforeach

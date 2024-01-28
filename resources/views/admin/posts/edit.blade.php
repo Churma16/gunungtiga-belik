@@ -57,9 +57,8 @@
                                 <div class="row mt-2">
                                     <div class="col-md-10 col-lg-3">
                                         <h5 class="required">Gambar Header</h5>
-                                        <img id="image_preview" class="mx-auto mt-2"
-                                            src="{{ asset('storage/' . $post->gambar) }}" alt="Preview Image"
-                                            style=" max-width: 100%; border-radius: 8px">
+                                        <img id="image_preview" class="mx-auto mt-2" src="{{ asset($post->gambar) }}"
+                                            alt="Preview Image" style=" max-width: 100%; border-radius: 8px">
                                         <div class="input-group input-group-outline my-3">
                                             <label class="form-label"></label>
                                             <input type="file" class="form-control" name="gambar" id="gambar_header"
@@ -95,7 +94,7 @@
                                             <div class="card">
                                                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                                                     <a class="d-block blur-shadow-image">
-                                                        <img src="{{ asset('storage/' . $gambar_satuan->gambar) }}"
+                                                        <img src="{{ asset($gambar_satuan->gambar) }}"
                                                             alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
                                                     </a>
 

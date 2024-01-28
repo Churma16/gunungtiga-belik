@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BPD;
-use App\Models\Category;
-use App\Models\KarangTaruna;
-use App\Models\LPMD;
-use App\Models\PKK;
-use App\Models\Post;
-use App\Models\PostImage;
-use App\Models\User;
-use App\Models\VillageGovernment;
 use Carbon\Carbon;
+use App\Models\BPD;
+use App\Models\PKK;
+use App\Models\LPMD;
+use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\PostImage;
+use App\Models\KarangTaruna;
+use App\Models\VillageGovernment;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -27,8 +28,8 @@ class HomeController extends Controller
     public function index()
     {
         if (request('search')) {
-            $posts = Post::where('judul', 'like', '%'.request('search').'%')->latest()->paginate(10);
-            $title = 'Hasil Pencarian: '.request('search');
+            $posts = Post::where('judul', 'like', '%' . request('search') . '%')->latest()->paginate(10);
+            $title = 'Hasil Pencarian: ' . request('search');
         } else {
             $posts = Post::latest()->paginate(10);
             $title = 'Berita Terbaru';
@@ -101,7 +102,7 @@ class HomeController extends Controller
         $distinctCategories = $this->getDistinctCategories();
 
         return view('user.index', [
-            'title' => 'Berita Berdasarkan Penulis: '.$user->name,
+            'title' => 'Berita Berdasarkan Penulis: ' . $user->name,
             'posts' => $posts,
             'distinctYears' => $distinctYears,
             'distinctCategories' => $distinctCategories,
@@ -127,7 +128,7 @@ class HomeController extends Controller
         $distinctCategories = $this->getDistinctCategories();
 
         return view('user.index', [
-            'title' => 'Berita Berdasarkan Kategori: '.$category->nama,
+            'title' => 'Berita Berdasarkan Kategori: ' . $category->nama,
             'posts' => $posts,
             'distinctYears' => $distinctYears,
             'distinctCategories' => $distinctCategories,
@@ -152,7 +153,7 @@ class HomeController extends Controller
         $distinctCategories = $this->getDistinctCategories();
 
         return view('user.index', [
-            'title' => 'Berita Tahun: '.$year,
+            'title' => 'Berita Tahun: ' . $year,
             'posts' => $posts,
             'distinctYears' => $distinctYears,
             'distinctCategories' => $distinctCategories,
@@ -180,7 +181,7 @@ class HomeController extends Controller
         $distinctCategories = $this->getDistinctCategories();
 
         return view('user.index', [
-            'title' => 'Berita Bulan: '.$month.' '.$year,
+            'title' => 'Berita Bulan: ' . $month . ' ' . $year,
             'posts' => $posts,
             'distinctYears' => $distinctYears,
             'distinctCategories' => $distinctCategories,
@@ -288,5 +289,23 @@ class HomeController extends Controller
             'title' => 'Karang Taruna',
             'karang_tarunas' => $karang_tarunas,
         ]);
+    }
+
+    public function showPicture($path)
+    {
+        $pathParts = explode('/', $path);
+
+        $filePath = storage_path("app/public/{$pathParts[0]}/{$pathParts[1]}");
+        // dd($filePath);
+
+        if (!Storage::exists($filePath)) {
+            abort(404);
+        }
+
+        $fileContents = Storage::get($filePath);
+        $fileMimeType = Storage::mimeType($filePath);
+
+        return response($fileContents)
+            ->header('Content-Type', $fileMimeType);
     }
 }
