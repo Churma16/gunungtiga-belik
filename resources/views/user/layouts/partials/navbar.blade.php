@@ -2,7 +2,8 @@
 <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
     <div class="container">
         <a class="navbar-brand  text-white " href="/" rel="tooltip" title="Designed and Coded by Creative Tim"
-            data-placement="bottom">
+            data-placement="bottom"> <i class="material-icons opacity-6 me-2 text-md">home</i>
+
             GUNUNGTIGA
         </a>
         <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
@@ -121,10 +122,10 @@
                             </a>
                         </div>
                         <div class="d-lg-none">
-                            <a href="/profil-desa/sejarah-desa" class="dropdown-item border-radius-md">
+                            <a href="/informasi/peraturan-desa" class="dropdown-item border-radius-md">
                                 <span>Peraturan Desa</span>
                             </a>
-                            <a href="/profil-desa/visi-misi-desa" class="dropdown-item border-radius-md">
+                            <a href="/informasi/keuangan-desa" class="dropdown-item border-radius-md">
                                 <span>Keuangan Desa</span>
                             </a>
                         </div>
@@ -153,19 +154,43 @@
                     <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-lg mt-0 mt-lg-3"
                         aria-labelledby="dropdownMenuPages8">
                         <div class="d-none d-lg-block">
-                            <a href="/profil-desa/sejarah-desa" class="dropdown-item border-radius-md">
-                                <span>Peraturan Desa</span>
+                            <a href="/profil-desa/pekerjaan" class="dropdown-item border-radius-md">
+                                <span>Pekerjaan</span>
                             </a>
-                            <a href="/profil-desa/visi-misi-desa" class="dropdown-item border-radius-md">
-                                <span>Keuangan Desa</span>
+                            <a href="/profil-desa/pendidikan" class="dropdown-item border-radius-md">
+                                <span>Pendidikan</span>
+                            </a>
+                            <a href="/profil-desa/agama" class="dropdown-item border-radius-md">
+                                <span>Agama</span>
+                            </a>
+                            <a href="/profil-desa/status-kawin" class="dropdown-item border-radius-md">
+                                <span>Status Kawin</span>
+                            </a>
+                            <a href="/profil-desa/piramida-penduduk" class="dropdown-item border-radius-md">
+                                <span>Piramida Penduduk</span>
+                            </a>
+                            <a href="/profil-desa/jenis-kelamin" class="dropdown-item border-radius-md">
+                                <span>Jenis Kelamin</span>
                             </a>
                         </div>
                         <div class="d-lg-none">
-                            <a href="/profil-desa/sejarah-desa" class="dropdown-item border-radius-md">
-                                <span>Peraturan Desa</span>
+                            <a href="/profil-desa/pekerjaan" class="dropdown-item border-radius-md">
+                                <span>Pekerjaan</span>
                             </a>
-                            <a href="/profil-desa/visi-misi-desa" class="dropdown-item border-radius-md">
-                                <span>Keuangan Desa</span>
+                            <a href="/profil-desa/pendidikan" class="dropdown-item border-radius-md">
+                                <span>Pendidikan</span>
+                            </a>
+                            <a href="/profil-desa/agama" class="dropdown-item border-radius-md">
+                                <span>Agama</span>
+                            </a>
+                            <a href="/profil-desa/status-kawin" class="dropdown-item border-radius-md">
+                                <span>Status Kawin</span>
+                            </a>
+                            <a href="/profil-desa/piramida-penduduk" class="dropdown-item border-radius-md">
+                                <span>Piramida Penduduk</span>
+                            </a>
+                            <a href="/profil-desa/jenis-kelamin" class="dropdown-item border-radius-md">
+                                <span>Jenis Kelamin</span>
                             </a>
                         </div>
                     </div>

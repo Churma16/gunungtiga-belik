@@ -77,6 +77,7 @@ class CategoryController extends Controller
         }
 
         return view('admin.posts.index', [
+            'title'=> 'Postingan Kategori '.$category->nama,
             'posts' => $posts,
         ]);
     }

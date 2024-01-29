@@ -7,7 +7,12 @@
             background-color: #1d1d1d !important;
             border-color: #1d1d1d !important;
         }
+
+        .justify {
+            text-align: justify;
+        }
     </style>
+
 @endsection
 
 @section('content')
@@ -98,9 +103,8 @@
                                         <div class="col-lg-3 col-md-6 col-sm-12  d-flex flex-column justify-content-center">
                                             <a href="/detail-post/{{ $post->slug }}">
                                                 <div class="p-3 py-auto pe-md-0">
-                                                    <img class="border-radius-md shadow-lg"
-                                                        src="{{ asset($post->gambar) }}" alt="image"
-                                                        style="width: 100%;">
+                                                    <img class="border-radius-md shadow-lg" src="{{ asset($post->gambar) }}"
+                                                        alt="image" style="width: 100%;">
                                                 </div>
                                             </a>
                                         </div>
@@ -109,17 +113,17 @@
                                                 <a href="/detail-post/{{ $post->slug }}">
                                                     <h5 class="mb-0">{{ $post->judul }}</h5>
                                                 </a>
-                                                <div class="d-flex" style="gap:8px">
-                                                    <small><i class="fas fa-clock"></i>
-                                                        {{ $post->post_format_date }}</small>
-                                                    <small><i class="fas fa-user"></i> <a
-                                                            href="/author/{{ $post->user->name }}">{{ $post->user->name }}</a></small>
-                                                    <small><i class="fas fa-folder-open"></i>
-                                                        <a
-                                                            href="/category/{{ $post->category->nama }}">{{ $post->category->nama }}</a></small>
+                                                <div class="d-flex flex-wrap" style="gap:8px">
+                                                    <small class=""><i class="fas fa-clock"></i> {{ $post->post_format_date }}</small>
+                                                    <small class=""><i class="fas fa-user"></i> <a href="/author/{{ $post->user->name }}">{{ $post->user->name }}</a></small>
+                                                    <small class=""><i class="fas fa-folder-open"></i> <a href="/category/{{ $post->category->nama }}">{{ $post->category->nama }}</a></small>
                                                 </div>
-                                                <p class="mb-0 mt-2">{!! $post->post_excerpt !!}... <a class="text-bold"
-                                                        href="/detail-post/{{ $post->slug }}">Baca lebih lanjut...</a>
+
+                                                <p class="mb-0 mt-2 justify">
+                                                    <span class="mobile-excerpt"
+                                                        data-excerpt="{!! $post->post_excerpt !!}"></span>
+                                                    <a class="text-bold" href="/detail-post/{{ $post->slug }}">Baca lebih
+                                                        lanjut...</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -159,6 +163,20 @@
             }
         });
     </script>
-@endsection
+    <script>
+        function setExcerptLength() {
+            var excerptElements = document.querySelectorAll('.mobile-excerpt');
 
-</html>
+            excerptElements.forEach(function(element) {
+                var excerptLength = window.innerWidth < 768 ? 50 :
+                    100; // Adjust the breakpoint and lengths as needed
+                var excerpt = element.getAttribute('data-excerpt').split(' ').slice(0, excerptLength).join(' ');
+
+                element.innerHTML = excerpt + '...';
+            });
+        }
+
+        window.addEventListener('resize', setExcerptLength);
+        window.addEventListener('load', setExcerptLength);
+    </script>
+@endsection

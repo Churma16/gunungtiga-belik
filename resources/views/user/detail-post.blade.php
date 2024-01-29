@@ -10,6 +10,7 @@
         p {
             text-align: justify
         }
+        
     </style>
 @endsection
 
@@ -85,7 +86,7 @@
                                 <!-- List group -->
                             </div>
                             <div class="card-body">
-                                <div class="d-flex border-top border-bottom py-1" style="gap: 8px">
+                                <div class="d-flex border-top border-bottom py-1 flex-wrap" style="gap: 8px">
                                     <small><i class="fas fa-clock"></i>
                                         <a href="">{{ $post->post_date }}</a></small>
                                     <small><i class="fas fa-user"></i> <a

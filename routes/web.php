@@ -98,6 +98,22 @@ Route::prefix('kelembagaan')->group(function () {
 });
 
 /**
+ * Organisasi Routes
+ */
+Route::prefix('organisasi')->group(function () {
+    /**
+     * Pemerintah Desa Route
+     */
+    Route::get('/peraturan-desa', [HomeController::class, 'showVillageGovernment']);
+
+    /**
+     * BPD Route
+     */
+    Route::get('/keuangan-desa', [HomeController::class, 'showBPD']);
+
+});
+
+/**
  * Peta Desa Route
  */
 Route::get('/peta-desa', function () {
