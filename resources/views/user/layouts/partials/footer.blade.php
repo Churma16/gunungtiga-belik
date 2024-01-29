@@ -100,8 +100,9 @@
                         All rights reserved. Copyright ©
                         <script>
                             document.write(new Date().getFullYear())
-                        </script> Material Kit by <a href="https://www.creative-tim.com"
-                            target="_blank">Creative Tim</a>.
+                        </script> Made by Fathan Muhammad Faqih, KKN Reguler Universitas Diponegoro
+                        <br>
+                        Using Material Kit 2
                     </p>
                 </div>
             </div>

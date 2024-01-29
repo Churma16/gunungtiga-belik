@@ -53,9 +53,11 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'judul' => 'required',
             'konten' => 'required',
-            'gambar' => 'required|image',
+            'gambar' => 'required|image|max:2048',
             'category_id' => 'required',
+            'post_gambar.*' => 'image|max:2048',
         ]);
+
 
         $validatedData['judul'] = strtoupper($validatedData['judul']);
 
@@ -66,6 +68,9 @@ class PostController extends Controller
                 $filename = 'gambar-header/' . Str::random(15) . '.' . $extention;
                 Storage::makeDirectory('gambar-header/');
                 $file->move(public_path('gambar-header/'), $filename);
+                // Change for live
+                // $file->move(base_path('../public_html/gambar-header/'), $filename);
+
                 $validatedData['gambar'] =  $filename;
             }
         }
@@ -95,6 +100,9 @@ class PostController extends Controller
                     $filename = 'gambar-post/' . Str::random(15) . '.' . $extention;
                     Storage::makeDirectory('gambar-post/');
                     $file->move(public_path('gambar-post/'), $filename);
+                    // change for lice
+                    // $file->move(base_path('../public_html/gambar-post/'), $filename);
+
                     $gambarPath = $filename;
 
                     PostImage::create([
@@ -146,8 +154,9 @@ class PostController extends Controller
         $validatedData = $request->validate([
             'judul' => 'required',
             'konten' => 'required',
-            'gambar' => 'image',
+            'gambar' => 'image|max:2048',
             'category_id' => 'required',
+            'post_gambar.*' => 'image|max:2048',
         ]);
 
         if ($request->file('gambar')) {
@@ -160,6 +169,8 @@ class PostController extends Controller
             $filename = 'gambar-header/' . Str::random(15) . '.' . $extention;
             Storage::makeDirectory('gambar-header/');
             $file->move(public_path('gambar-header/'), $filename);
+            // change for live
+            // $file->move(base_path('../public_html/gambar-header/'), $filename);
             $old_file_path = public_path('gambar-header/') . $post->gambar;
             if (file_exists($old_file_path)) {
                 unlink($old_file_path);

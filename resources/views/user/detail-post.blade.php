@@ -99,18 +99,23 @@
                         </div>
                     </div>
                     <div class="row justify-content-between mt-5 w-100 ">
-                        <div class="card d-flex flex-column col-md-4 col-sm-12 align-items-start p-3">
-                            <a href="/detail-post/{{ $previousPost->slug }}">
-                                <strong class="">PREVIOUS</strong>
-                                <small class="d-block">{{ $previousPost->judul }}</small>
-                            </a>
-                        </div>
-                        <div class="card col-md-4 col-sm-12  p-3">
-                            <a class="d-flex flex-column align-items-end" href="/detail-post/{{ $nextPost->slug }}">
-                                <strong class="">NEXT</strong>
-                                <small class="text-end">{{ $nextPost->judul }}</small>
-                            </a>
-                        </div>
+                        @if($previousPost)
+                            <div class="card d-flex flex-column col-md-4 col-sm-12 align-items-start p-3">
+                                <a href="/detail-post/{{ $previousPost->slug }}">
+                                    <strong class="">PREVIOUS</strong>
+                                    <small class="d-block">{{ $previousPost->judul }}</small>
+                                </a>
+                            </div>
+                        @endif
+
+                        @if($nextPost)
+                            <div class="card col-md-4 col-sm-12  p-3">
+                                <a class="d-flex flex-column align-items-end" href="/detail-post/{{ $nextPost->slug }}">
+                                    <strong class="">NEXT</strong>
+                                    <small class="text-end">{{ $nextPost->judul }}</small>
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </section>
