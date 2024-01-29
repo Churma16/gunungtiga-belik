@@ -291,21 +291,17 @@ class HomeController extends Controller
         ]);
     }
 
-    public function showPicture($path)
+    public function showPeraturanDesa()
     {
-        $pathParts = explode('/', $path);
+        return view('user.informasi.peraturan-desa', [
+            'title' => 'Peraturan Desa',
+        ]);
+    }
 
-        $filePath = storage_path("app/public/{$pathParts[0]}/{$pathParts[1]}");
-        // dd($filePath);
-
-        if (!Storage::exists($filePath)) {
-            abort(404);
-        }
-
-        $fileContents = Storage::get($filePath);
-        $fileMimeType = Storage::mimeType($filePath);
-
-        return response($fileContents)
-            ->header('Content-Type', $fileMimeType);
+    public function showKeuanganDesa()
+    {
+        return view('user.informasi.keuangan-desa', [
+            'title' => 'Keuangan Desa',
+        ]);
     }
 }

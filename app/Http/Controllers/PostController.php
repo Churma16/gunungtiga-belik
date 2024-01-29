@@ -160,10 +160,6 @@ class PostController extends Controller
         ]);
 
         if ($request->file('gambar')) {
-            //jika ada gambar baru ganti gambar lama, maka hapus gambar lama dulu
-            // if ($request->gambar) {
-            //     Storage::delete($post->gambar);
-            // }
             $file = $request->file('gambar');
             $extention = $file->getClientOriginalExtension();
             $filename = 'gambar-header/' . Str::random(15) . '.' . $extention;
@@ -171,7 +167,7 @@ class PostController extends Controller
             $file->move(public_path('gambar-header/'), $filename);
             // change for live
             // $file->move(base_path('../public_html/gambar-header/'), $filename);
-            $old_file_path = public_path('gambar-header/') . $post->gambar;
+            $old_file_path = $post->gambar;
             if (file_exists($old_file_path)) {
                 unlink($old_file_path);
             }
@@ -192,6 +188,9 @@ class PostController extends Controller
                     $filename = 'gambar-post/' . Str::random(15) . '.' . $extention;
                     Storage::makeDirectory('gambar-post/');
                     $file->move(public_path('gambar-post/'), $filename);
+                    //  change for live
+                    // $file->move(base_path('../public_html/gambar-post/'), $filename);
+
                     $gambarPath = $filename;
 
                     PostImage::create([
