@@ -109,6 +109,15 @@ Route::prefix('/informasi')->group(function () {
 });
 
 /**
+ * Statistik Routes
+ */
+Route::prefix('/statistik')->group(function () {
+    Route::get('/jenis-kelamin', [HomeController::class, 'showJenisKelamin']);
+    Route::get('/pekerjaan', [HomeController::class, 'showPekerjaan']);
+    Route::get('/pendidikan', [HomeController::class, 'showPendidikan']);
+});
+
+/**
  * Peta Desa Route
  */
 Route::get('/peta-desa', function () {

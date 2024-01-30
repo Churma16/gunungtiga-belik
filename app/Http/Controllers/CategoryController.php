@@ -101,7 +101,7 @@ class CategoryController extends Controller
         if (Category::where('nama', $request['nama'])->exists()) {
             session()->flash('failed', 'Kategori '.$category->nama.' Gagal Diubah Menjadi '.$request['nama'].'. Nama Kategori Sudah Digunakan.');
 
-            return redirect('categories/');
+            return redirect('/dashboard/categories/');
         }
 
         $validatedData = $request->validate([

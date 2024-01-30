@@ -304,4 +304,27 @@ class HomeController extends Controller
             'title' => 'Keuangan Desa',
         ]);
     }
+
+    public function showJenisKelamin()
+    {
+        return view('user.statistik.jenis-kelamin', [
+            'title' => 'Statistik Jenis Kelamin',
+        ]);
+    }
+
+    public function showPendidikan()
+    {
+        return view('user.statistik.pendidikan', [
+            'title' => 'Statistik Pendidikan',
+        ]);
+    }
+    public function showPekerjaan()
+    {
+        return view('user.statistik.pekerjaan', [
+            'title' => 'Statistik Pekerjaan',
+        ]);
+    }
+
+
+
 }
