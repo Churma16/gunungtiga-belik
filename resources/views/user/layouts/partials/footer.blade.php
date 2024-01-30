@@ -9,13 +9,17 @@
                     <h6 class="font-weight-bolder mb-4">Gunungtiga</h6>
                 </div>
                 <div>
-                    {{-- <ul class="d-flex flex-row ms-n3 nav">
+                    <ul class="d-flex flex-row ms-n3 nav">
                         <li class="nav-item">
-                            <a class="nav-link pe-1" href="https://www.facebook.com/CreativeTim" target="_blank">
+                            {{-- <a class="nav-link pe-1" href="https://www.facebook.com/CreativeTim" target="_blank">
                                 <i class="fab fa-facebook text-lg opacity-8"></i>
-                            </a>
+                            </a> --}}
+                            <p>
+                                Jalan Raya Belik Watukumpul KM. 03, Gunungtiga, Belik, Ringin, Gunungtiga, Pemalang,
+                                Kabupaten Pemalang, Jawa Tengah 52356
+                            </p>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link pe-1" href="https://twitter.com/creativetim" target="_blank">
                                 <i class="fab fa-twitter text-lg opacity-8"></i>
                             </a>
@@ -35,8 +39,8 @@
                                 target="_blank">
                                 <i class="fab fa-youtube text-lg opacity-8"></i>
                             </a>
-                        </li>
-                    </ul> --}}
+                        </li> --}}
+                    </ul>
                 </div>
             </div>
             <div class="col-md-2 col-sm-6 col-6 mb-4">

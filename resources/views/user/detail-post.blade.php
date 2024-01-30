@@ -10,7 +10,6 @@
         p {
             text-align: justify
         }
-        
     </style>
 @endsection
 
@@ -100,7 +99,7 @@
                         </div>
                     </div>
                     <div class="row justify-content-between mt-5 w-100 ">
-                        @if($previousPost)
+                        @if ($previousPost)
                             <div class="card d-flex flex-column col-md-4 col-sm-12 align-items-start p-3">
                                 <a href="/detail-post/{{ $previousPost->slug }}">
                                     <strong class="">PREVIOUS</strong>
@@ -109,7 +108,7 @@
                             </div>
                         @endif
 
-                        @if($nextPost)
+                        @if ($nextPost)
                             <div class="card col-md-4 col-sm-12  p-3">
                                 <a class="d-flex flex-column align-items-end" href="/detail-post/{{ $nextPost->slug }}">
                                     <strong class="">NEXT</strong>
@@ -145,7 +144,8 @@
                             <b class="text-sm opacity-10 mb-0 border-bottom mb-2 mx-n3"><a
                                     href="/year/{{ $monthYear[1] }}/{{ $monthYear[0] }}">
                                     {{ $uniqueMonthYear }}
-                                </a></b>
+                                </a>
+                            </b>
                         @endforeach
                     </div>
                 </div>
