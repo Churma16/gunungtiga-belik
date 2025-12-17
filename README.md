@@ -6,7 +6,7 @@ A comprehensive Content Management System (CMS) designed for **Desa Gunungtiga, 
 
 The system serves two main purposes: providing **public access** to village data and enabling **administrators** to manage content and institutional structures easily.
 
-![Village Website Preview](/public/homepage-desa.png)
+![Village Website Preview](public/homepage-desa.png)
 
 ## ✨ Key Features
 
