@@ -17,18 +17,23 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->get();
+        try {
+            $posts = Post::latest()->get();
 
-        foreach ($posts as $post) {
-            $post->konten = strip_tags($post->konten);
+            foreach ($posts as $post) {
+                $post->konten = strip_tags($post->konten);
 
-            $post->post_date = $post->created_at->format('d F Y');
+                $post->post_date = $post->created_at->format('d F Y');
+            }
+
+            return view('admin.posts.index', [
+                'title' => 'Postingan',
+                'posts' => $posts,
+            ]);
+        } catch (\Exception $e) {
+            // Handle the error
+            return response()->view('error', ['message' => $e->getMessage()], 500);
         }
-
-        return view('admin.posts.index', [
-            'title' => 'Postingan',
-            'posts' => $posts,
-        ]);
     }
 
     /**
@@ -58,6 +63,12 @@ class PostController extends Controller
             'post_gambar.*' => 'image|max:2048',
         ]);
 
+        if ($request->file('post_gambar')) {
+            $uploadedFiles = $request->file('post_gambar');
+            if (count($uploadedFiles) > 4) {
+                return redirect()->back()->withErrors(['post_gambar' => 'Maksimal hanya 4 gambar']);
+            }
+        }
 
         $validatedData['judul'] = strtoupper($validatedData['judul']);
 
@@ -87,29 +98,22 @@ class PostController extends Controller
         $post = Post::create($validatedData);
 
         if ($request->hasFile('post_gambar')) {
-            $uploadedFiles = $request->file('post_gambar');
-
-            if (count($uploadedFiles) > 4) {
-                return redirect()->back()->withErrors(['post_gambar' => 'Maksimal hanya 4 gambar']);
-            }
 
             foreach ($request->file('post_gambar') as $gambar_satuan) {
-                if ($gambar_satuan->isValid() && $gambar_satuan->isFile() && in_array($gambar_satuan->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
-                    $file = $gambar_satuan;
-                    $extention = $file->getClientOriginalExtension();
-                    $filename = 'gambar-post/' . Str::random(15) . '.' . $extention;
-                    Storage::makeDirectory('gambar-post/');
-                    $file->move(public_path('gambar-post/'), $filename);
-                    // change for lice
-                    // $file->move(base_path('../public_html/gambar-post/'), $filename);
+                $file = $gambar_satuan;
+                $extention = $file->getClientOriginalExtension();
+                $filename = 'gambar-post/' . Str::random(15) . '.' . $extention;
+                Storage::makeDirectory('gambar-post/');
+                $file->move(public_path('gambar-post/'), $filename);
+                // change for live
+                // $file->move(base_path('../public_html/gambar-post/'), $filename);
 
-                    $gambarPath = $filename;
+                $gambarPath = $filename;
 
-                    PostImage::create([
-                        'gambar' => $gambarPath,
-                        'post_id' => $post->id,
-                    ]);
-                }
+                PostImage::create([
+                    'gambar' => $gambarPath,
+                    'post_id' => $post->id,
+                ]);
             }
         }
 
@@ -159,6 +163,9 @@ class PostController extends Controller
             'post_gambar.*' => 'image|max:2048',
         ]);
 
+        $validatedData['judul'] = strtoupper($validatedData['judul']);
+
+
         if ($request->file('gambar')) {
             $file = $request->file('gambar');
             $extention = $file->getClientOriginalExtension();
@@ -182,22 +189,20 @@ class PostController extends Controller
 
         if ($request->hasFile('post_gambar')) {
             foreach ($request->file('post_gambar') as $gambar_satuan) {
-                if ($gambar_satuan->isValid() && $gambar_satuan->isFile() && in_array($gambar_satuan->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif'])) {
-                    $file = $gambar_satuan;
-                    $extention = $file->getClientOriginalExtension();
-                    $filename = 'gambar-post/' . Str::random(15) . '.' . $extention;
-                    Storage::makeDirectory('gambar-post/');
-                    $file->move(public_path('gambar-post/'), $filename);
-                    //  change for live
-                    // $file->move(base_path('../public_html/gambar-post/'), $filename);
+                $file = $gambar_satuan;
+                $extention = $file->getClientOriginalExtension();
+                $filename = 'gambar-post/' . Str::random(15) . '.' . $extention;
+                Storage::makeDirectory('gambar-post/');
+                $file->move(public_path('gambar-post/'), $filename);
+                //  change for live
+                // $file->move(base_path('../public_html/gambar-post/'), $filename);
 
-                    $gambarPath = $filename;
+                $gambarPath = $filename;
 
-                    PostImage::create([
-                        'gambar' => $gambarPath,
-                        'post_id' => $post->id,
-                    ]);
-                }
+                PostImage::create([
+                    'gambar' => $gambarPath,
+                    'post_id' => $post->id,
+                ]);
             }
         }
 

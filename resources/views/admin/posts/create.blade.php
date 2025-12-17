@@ -1,4 +1,11 @@
 {{-- @dd('test') --}}
+@if ($errors->any())
+    {{-- @dd($errors); --}}
+    {{-- @foreach ($errors->all() as $error)
+        @dd($error);
+    @endforeach --}}
+@endif
+
 @extends('admin.layouts.main')
 
 @section('styles')
@@ -30,7 +37,7 @@
                                         <h5 class="required">Judul Postingan</h5>
                                         <div class="input-group input-group-outline ">
                                             <input type="text" class="form-control" name="judul"
-                                                placeholder="Masukan judul postingan..." required>
+                                                placeholder="Masukan judul postingan..." value="{{ old('judul') }}">
                                         </div>
                                         @error('judul')
                                             <small class="text-danger mb-3">
@@ -46,7 +53,9 @@
                                             <select class="form-control" name="category_id" required>
                                                 <option class="opacity-5" value="">Pilih Kategori</option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->nama }}</option>
+                                                    <option value="{{ $category->id }}"
+                                                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                                        {{ $category->nama }}</option>
                                                 @endforeach
                                             </select>
                                             @error('category_id')
@@ -97,6 +106,11 @@
                                             <label class="form-label"></label>
                                             <input type="file" class="form-control" name="post_gambar[]" multiple>
                                         </div>
+                                        @foreach ($errors->get('post_gambar.*') as $error)
+                                            <small class="text-danger">
+                                                {{ $error[0] }}
+                                            </small>
+                                        @endforeach
                                         @error('post_gambar')
                                             <small class="text-danger">
                                                 {{ $message }}
