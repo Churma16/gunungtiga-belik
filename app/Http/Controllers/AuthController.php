@@ -25,29 +25,36 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        // dd($request->all());
-        $credentials = $request->only('email', 'password');
+        try {
+            // dd($request->all());
+            $credentials = $request->only('email', 'password');
 
-        // Check if the user with the provided email exists
-        $user = User::where('email', $credentials['email'])->first();
+            // Check if the user with the provided email exists
+            $user = User::where('email', $credentials['email'])->first();
 
-        // Check if the user exists and if their email is verified
-        if ($user && $user->email_verified_at) {
-            // Attempt authentication
-            if (auth()->attempt($credentials)) {
-                $request->session()->regenerate();
+            // Check if the user exists and if their email is verified
+            if ($user && $user->email_verified_at) {
+                // Attempt authentication
+                if (auth()->attempt($credentials)) {
+                    $request->session()->regenerate();
 
-                return redirect()->intended('dashboard');
+                    return redirect()->intended('dashboard');
+                } else {
+                    // Authentication failed
+                    return back()->withErrors([
+                        'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
+                    ]);
+                }
             } else {
-                // Authentication failed
+                // User doesn't exist or email is not verified
                 return back()->withErrors([
-                    'email' => 'Kredensial yang diberikan tidak cocok dengan catatan kami.',
+                    'email' => 'Email yang dimasukkan belum diverifikasi atau tidak ada.',
                 ]);
             }
-        } else {
-            // User doesn't exist or email is not verified
+        } catch (\Exception $e) {
+            // Handle any unexpected exceptions
             return back()->withErrors([
-                'email' => 'Email yang dimasukkan belum diverifikasi atau tidak ada.',
+                'email' => 'Terjadi kesalahan saat melakukan login.',
             ]);
         }
     }
@@ -69,17 +76,24 @@ class AuthController extends Controller
      */
     public function register()
     {
-        $validatedData = request()->validate([
-            'name' => 'required|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required',
-        ]);
+        try {
+            $validatedData = request()->validate([
+                'name' => 'required|unique:users',
+                'email' => 'required|email|unique:users',
+                'password' => 'required',
+            ]);
 
-        $validatedData['password'] = bcrypt($validatedData['password']);
+            $validatedData['password'] = bcrypt($validatedData['password']);
 
-        User::create($validatedData);
+            User::create($validatedData);
 
-        return redirect('/login')->with('success', 'Hubungi admin untuk verifikasi email.');
+            return redirect('/login')->with('success', 'Hubungi admin untuk verifikasi email.');
+        } catch (\Exception $e) {
+            // Handle any unexpected exceptions
+            return back()->withErrors([
+                'email' => 'Terjadi kesalahan saat melakukan registrasi.',
+            ]);
+        }
     }
 
     /**
@@ -119,17 +133,24 @@ class AuthController extends Controller
      */
     public function changePassword()
     {
-        request()->validate([
-            'password' => 'required|confirmed',
-        ]);
+        try {
+            request()->validate([
+                'password' => 'required|confirmed',
+            ]);
 
-        auth()->user()->update([
-            'password' => bcrypt(request('password')),
-        ]);
+            auth()->user()->update([
+                'password' => bcrypt(request('password')),
+            ]);
 
-        session()->flash('success', 'Password berhasil diperbarui');
+            session()->flash('success', 'Password berhasil diperbarui');
 
-        return redirect()->back();
+            return redirect()->back();
+        } catch (\Exception $e) {
+            // Handle any unexpected exceptions
+            return back()->withErrors([
+                'password' => 'Terjadi kesalahan saat mengubah password.',
+            ]);
+        }
     }
 
     /**
