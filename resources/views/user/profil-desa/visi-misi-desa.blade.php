@@ -24,14 +24,17 @@
         <!-- END Testimonials w/ user image & text & info -->
         <!-- START Blogs w/ 4 cards w/ image & text & link -->
         <section class="py-3">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h3 class="mb-5 mt-5">VISI & MISI DESA</h3>
+            <div class="container" id="">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="">
+                        <h3 class="mb-5 mt-5" id="title">VISI MISI DESA</h3>
+                    </div>
+                    <div class="form-check form-switch">
+                        <label class="form-check-label" for="changeLanguange">ID/EN</label>
+                        <input class="form-check-input" type="checkbox" onclick="toggleLanguage()">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" id="bahasaContent">
                     <p>Berdasarkan Peraturan Desa Gunungtiga Nomor 2 Tahun 2019 Tentang Rencana Pembangunan Jangkah Menengah
                         Desa (RPJM Desa) Gunungtiga Tahun 2019-2025, maka seluruh rencana program dan kegiatan pembangunan
                         yang akan dilakukan oleh desa secara bertahap dan berkesinambungan harus dapat menghantarkan
@@ -112,7 +115,93 @@
                     </ol>
                     </p>
                 </div>
-            </div>
+                <div class="row hidden" id="englishContent">
+                    <p>According to Gunungtiga Village Regulation Number 2 of 2019 concerning the Gunungtiga Village
+                        Medium-Term Development Planning (RPJM Desa) 2019-2025, all development program plans and
+                        activities to be carried out by the village in stages and continuously must be able to lead to
+                        the achievement of the Village Vision - Mission. The Vision - Mission of Gunungtiga Village,
+                        besides being the Vision - Mission of the elected Village Head Candidate, is also integrated
+                        with the common needs of the village community where the preparation process is carried out in a
+                        participatory manner starting from the Hamlet / RW level to the Village level.</p>
+
+                    <h4>Vision</h4>
+                    <p>A vision is a demanding picture of the desired future state by considering the potential and
+                        needs of the village. The formation of the Gunungtiga Village Vision was carried out using a
+                        participatory approach, involving interested parties in Gunungtiga Village such as the village
+                        government, Village council (BPD), community leaders, religious leaders, village community
+                        institutions and the village community in general. Consideration of external conditions in the
+                        village such as development area work units in the Sub-district. Based on the considerations
+                        above, the vision of Gunungtiga Village is:</p>
+
+                    <blockquote class="blockquote text-center">
+                        <p class="mb-0 fw-bolder">THE ACTUALIZATION OF A HEALTHY, INDEPENDENT, RELIGIOUS AND LAW-ABIDING
+                            COMMUNITY AND THE IMPLEMENTATION OF A CLEAN, TRANSPARENT AND SERVICE-ORIENTED VILLAGE
+                            GOVERNMENT.</p>
+                    </blockquote>
+
+                    <h4>Mission</h4>
+                    <p>Missions are steps that will be taken to realize the vision. In order to realize the vision of
+                        Gunungtiga Village, missions include a statement that must be carried out by the village in
+                        order to achieve the village's vision. The vision statement is then elaborated into missions in
+                        order to be operationalized. As with the drafting of the vision, the mission in its preparation
+                        uses a participatory approach and considers the potential and needs of Gunungtiga Village, as
+                        the process is carried out, the mission of Gunungtiga Village is:</p>
+
+                    <ol>
+                        <li><strong>Religious</strong>
+                            <ul>
+                                <li>The materialization of a community based on faith and devotion, where religious
+                                    values and norms are implemented in daily behavior.</li>
+                                <li>Upholding the culture and character of a religious, moral and virtuous society.</li>
+                                <li>The development of transparency in culture and behavior.</li>
+                                <li>The development of a culture of honesty, sportsmanship, and respect for differences.
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li><strong>Safe and Peaceful</strong>
+                            <ul>
+                                <li>Improving and ensuring the certainty of public services with an effective and
+                                    efficient service model.</li>
+                                <li>Realizing transparent, accountable, professional government administration based on
+                                    norms and the rule of law.</li>
+                                <li>Increase empowerment and institutional strengthening in the community through the
+                                    involvement of all components in every stage of development.</li>
+                                <li>Improving and maintaining government, political, economic, social and cultural
+                                    stability so as to provide security and a sense of security for the community.</li>
+                            </ul>
+                        </li>
+
+                        <li><strong>Healthy and Prosperous</strong>
+                            <ul>
+                                <li>Improved public health so as to increase productivity.</li>
+                                <li>In the health sector, Gunungtiga village in 2014 successfully ranked the PHBS
+                                    competition at the Central Java Province level.</li>
+                                <li>Increased per capita income of the population so that Gunungtiga village becomes
+                                    prosperous.</li>
+                                <li>Increasing the human development index, which is a composition of education, health,
+                                    infant mortality, and life expectancy.</li>
+                                <li>Realizing the certainty of optimal basic community services which include education,
+                                    health, and rural infrastructure.</li>
+                                <li>Increase economic growth in order to alleviate poverty, open up employment
+                                    opportunities in order to realize community welfare.</li>
+                            </ul>
+                        </li>
+
+                        <li><strong>Uphold the Law Supremacy</strong>
+                            <ul>
+                                <li>Upholding the law with no discrimination.</li>
+                                <li>The creation of clean and professional village institutions and officials.</li>
+                                <li>Realization of human rights.</li>
+                                <li>The realization of a culture of respect and compliance with the law.</li>
+                            </ul>
+                        </li>
+
+                        <li><strong>Implementation of a Clean, Transparent, and Service-Prioritizing Village
+                                Administration</strong>
+                        </li>
+                    </ol>
+                </div>
         </section>
         <!-- END Blogs w/ 4 cards w/ image & text & link -->
     </div>
@@ -123,4 +212,20 @@
     <!--   Core JS Files   -->
 @endsection
 
-</html>
+@section('scripts')
+    <script>
+        function toggleLanguage() {
+            var bahasaContent = document.getElementById('bahasaContent');
+            var englishContent = document.getElementById('englishContent');
+            var title = document.getElementById('title');
+
+            bahasaContent.classList.toggle('hidden');
+            englishContent.classList.toggle('hidden');
+            if (title.innerHTML === "VISI MISI DESA") {
+                title.innerHTML = "VILLAGE VISION AND MISSION";
+            } else {
+                title.innerHTML = "VISI MISI DESA";
+            }
+        }
+    </script>
+@endsection
