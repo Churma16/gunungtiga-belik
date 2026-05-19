@@ -8,9 +8,9 @@ The system serves two main purposes: providing **public access** to village data
 
 ![Village Website Preview](public/homepage-desa.png)
 
-## ✨ Key Features
+## Key Features
 
-### 🌏 Public Portal (Visitor)
+### Public Portal (Visitor)
 Visitors can access all information without logging in:
 * **News Portal:** Read the latest village updates uploaded by admins.
 * **Village Profile:** View history, vision, and mission.
@@ -24,7 +24,7 @@ Visitors can access all information without logging in:
     * **Regulations:** Repository of "Peraturan Desa".
     * **Demographic Statistics:** Visual charts showing Population by **Job, Gender, and Education**.
 
-### 🛡️ Admin Dashboard
+### Admin Dashboard
 * **Content Management:** Create, edit, and delete News posts and manage Categories.
 * **Dynamic Institutional Management (Drag & Drop):**
     * Manage lists of officials for all institutions (Gov, BPD, LPMD, etc.).
@@ -33,21 +33,21 @@ Visitors can access all information without logging in:
     * **Verification System:** Approve or verify new admin registrations.
     * **Security:** Update password and account details.
 
-## ⚙️ Technical Highlights
+## Technical Highlights
 
 * **Interactive Sorting (Drag & Drop):**
     Unlike standard CRUD tables, the institutional lists allow admins to drag rows to change the display order. This is implemented using **jQuery UI** / **DataTables RowReorder** and synchronized with the database via **AJAX**.
 * **Role Management:**
     Secure verification flow where new admins must be approved by existing administrators before accessing the system.
 
-## 🛠️ Built With
+## Built With
 
 * **Backend:** [Laravel](https://laravel.com/)
 * **Frontend:** Bootstrap 5, Blade Templates
 * **Scripting:** jQuery, AJAX (for Drag & Drop)
 * **Database:** MySQL
 
-## 💻 Installation & Setup
+## Installation & Setup
 
 1.  **Clone the repository**
     ```bash
@@ -85,7 +85,7 @@ Visitors can access all information without logging in:
     php artisan serve
     ```
 
-## 👤 Author
+## Author
 
 **Fathan Muhammad Faqih**
 * [LinkedIn](https://linkedin.com/in/fathan-muhammad-faqih)
