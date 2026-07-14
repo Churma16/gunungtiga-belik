@@ -119,6 +119,9 @@
                             <a href="/informasi/keuangan-desa" class="dropdown-item border-radius-md">
                                 <span>Keuangan Desa</span>
                             </a>
+                            <a href="/informasi/umkm" class="dropdown-item border-radius-md">
+                                <span>KUMKM</span>
+                            </a>
                         </div>
                         <div class="d-lg-none">
                             <a href="/informasi/peraturan-desa" class="dropdown-item border-radius-md">
@@ -126,6 +129,9 @@
                             </a>
                             <a href="/informasi/keuangan-desa" class="dropdown-item border-radius-md">
                                 <span>Keuangan Desa</span>
+                            </a>
+                            <a href="/informasi/keuangan-desa" class="dropdown-item border-radius-md">
+                                <span>UMKM</span>
                             </a>
                         </div>
                     </div>

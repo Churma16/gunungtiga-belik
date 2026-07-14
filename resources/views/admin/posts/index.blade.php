@@ -188,8 +188,8 @@
             event.preventDefault();
 
             Swal.fire({
-                title: 'Hapus Kategori?',
-                text: "Kategori yang dihapus tidak dapat dikembalikan!",
+                title: 'Hapus Postingan?',
+                text: "Postingan yang dihapus tidak dapat dikembalikan!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

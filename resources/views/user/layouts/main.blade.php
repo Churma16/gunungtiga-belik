@@ -43,6 +43,9 @@
         body {
             overflow-x: hidden;
         }
+        .hidden {
+            display: none !important;
+        }
     </style>
     @yield('styles')
 </head>
