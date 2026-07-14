@@ -2,9 +2,15 @@
 
 [![Laravel Version](https://img.shields.io/badge/Laravel-v10.x-FF2D20?logo=laravel&logoColor=white)](https://laravel.com) [![PHP Version](https://img.shields.io/badge/PHP-%5E8.1-777BB4?logo=php&logoColor=white)](https://www.php.net/) [![Docker Support](https://img.shields.io/badge/Docker-Support-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Official profile and public information web portal for Gunungtiga Village, Belik District, Pemalang Regency, Central Java. This website is designed to facilitate public access to the latest news updates, institutional structures, demographic statistics, and village regulations and financial reports.
+> **A Kuliah Kerja Nyata (KKN) Community Service Project**
 
-The system serves two main purposes: providing public access to village data and enabling administrators to manage content and institutional structures easily.
+This project is a complete reimplementation of the Gunungtiga Village website, built from scratch using Laravel. 
+
+Originally, the assignment was to add a single feature to the village's existing WordPress site. However, due to irretrievable access credentials, the project quickly pivoted. I rebuilt the entire system from the ground up within a strict **30-day timeframe**, concurrently with another census digitization deliverable.
+
+To ensure long-term usability for non-technical village staff, the system features a custom-built CMS. It includes an intuitive drag-and-drop interface for managing organizational structures, news, and photo galleries independently. The project was successfully deployed and handed over to the village officials, complete with a comprehensive user guidebook and a dedicated socialization/training session.
+
+*(Note: The live production site is currently offline as the village has paused the hosting subscription following the completion of the KKN program).*
 
 ![Village Website Preview](public/homepage-desa.png)
 
@@ -195,6 +201,7 @@ After a new admin registers via `/register`, their account is inactive by defaul
 Special thanks and appreciation to:
 
 *   **Pemerintah Desa Gunungtiga, Kecamatan Belik**: For the trust, cooperation, and support provided during the handover of this village portal as part of the **Kuliah Kerja Nyata (KKN)** community service program.
+*   **Original Village Website ([gunungtiga-belik.desa.id](https://gunungtiga-belik.desa.id/))**: Which served as the primary reference for the foundational structure, demographic data, and public content during the reimplementation process.
 
 ---
 
